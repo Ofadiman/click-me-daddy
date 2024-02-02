@@ -8,6 +8,9 @@ dependencies:
   '@expo/vector-icons':
     specifier: ^14.0.0
     version: 14.0.0
+  '@react-native/assets-registry':
+    specifier: ^0.74.0
+    version: 0.74.0
   '@react-navigation/native':
     specifier: ^6.0.2
     version: 6.1.9(react-native@0.73.2)(react@18.2.0)
@@ -57,6 +60,9 @@ dependencies:
 devDependencies:
   '@babel/core':
     specifier: ^7.20.0
+    version: 7.23.9
+  '@babel/runtime':
+    specifier: ^7.23.9
     version: 7.23.9
   '@types/react':
     specifier: ~18.2.45
@@ -1516,7 +1522,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: false
 
   /@babel/template@7.23.9:
     resolution: {integrity: sha512-+xrD2BWLpvHKNmX2QbpdpsBaWnRxahMwJjO+KZk2JOElj5nSmKezyS1B4u+QbHMTX69t4ukm6hh9lsYQ7GHCKA==}
@@ -2450,6 +2455,11 @@ packages:
 
   /@react-native/assets-registry@0.73.1:
     resolution: {integrity: sha512-2FgAbU7uKM5SbbW9QptPPZx8N9Ke2L7bsHb+EhAanZjFZunA9PaYtyjUQ1s7HD+zDVqOQIvjkpXSv7Kejd2tqg==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /@react-native/assets-registry@0.74.0:
+    resolution: {integrity: sha512-I8Yy6bCKU5R4qZX4jfXsAPsHyuGHlulbnbG3NqO9JgZ3T2DJxJiZE39rHORP0trLnRh0rIeRcs4Mc14fAE6hrw==}
     engines: {node: '>=18'}
     dev: false
 
@@ -7406,7 +7416,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: false
 
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
