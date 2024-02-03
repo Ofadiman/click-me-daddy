@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@expo-google-fonts/inter':
+    specifier: ^0.2.3
+    version: 0.2.3
   '@expo/vector-icons':
     specifier: ^14.0.0
     version: 14.0.0
@@ -1571,6 +1574,10 @@ packages:
       deepmerge: 3.3.0
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
+    dev: false
+
+  /@expo-google-fonts/inter@0.2.3:
+    resolution: {integrity: sha512-iHK9FI+dnE45X5c2Z5hSFwNH4zUWethizpbv3XUn0FIGw5jwvzriENz0a6wCdkI4/d+1QkurnHo5XHti7TbNJA==}
     dev: false
 
   /@expo/bunyan@4.0.0:
