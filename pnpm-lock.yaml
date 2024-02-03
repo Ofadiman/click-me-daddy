@@ -11,6 +11,9 @@ dependencies:
   '@expo/vector-icons':
     specifier: ^14.0.0
     version: 14.0.0
+  '@faker-js/faker':
+    specifier: ^8.4.0
+    version: 8.4.0
   '@react-native/assets-registry':
     specifier: ^0.74.0
     version: 0.74.0
@@ -23,6 +26,9 @@ dependencies:
   expo-font:
     specifier: ~11.10.2
     version: 11.10.2(expo@50.0.5)
+  expo-image:
+    specifier: ~1.10.5
+    version: 1.10.5(expo@50.0.5)
   expo-linking:
     specifier: ~6.2.2
     version: 6.2.2(expo@50.0.5)
@@ -1944,6 +1950,11 @@ packages:
       chalk: 4.1.2
       find-up: 5.0.0
       js-yaml: 4.1.0
+    dev: false
+
+  /@faker-js/faker@8.4.0:
+    resolution: {integrity: sha512-htW87352wzUCdX1jyUQocUcmAaFqcR/w082EC8iP/gtkF0K+aKcBp0hR5Arb7dzR8tQ1TrhE9DNa5EbJELm84w==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: false
 
   /@gar/promisify@1.1.3:
@@ -4431,6 +4442,15 @@ packages:
     dependencies:
       expo: 50.0.5(@babel/core@7.23.9)(@react-native/babel-preset@0.73.20)
       fontfaceobserver: 2.3.0
+    dev: false
+
+  /expo-image@1.10.5(expo@50.0.5):
+    resolution: {integrity: sha512-IiqSU9FxpoNeSFbtVLHdLq9MIHtAUYI1hcNGXoj3fpNpPEUdjN41mPftLQPIszfWWBxgrjUu4trIVXuf/Ijy+w==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      '@react-native/assets-registry': 0.73.1
+      expo: 50.0.5(@babel/core@7.23.9)(@react-native/babel-preset@0.73.20)
     dev: false
 
   /expo-keep-awake@12.8.2(expo@50.0.5):
