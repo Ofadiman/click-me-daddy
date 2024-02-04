@@ -68,7 +68,6 @@ export default function MapScreen() {
 
   useEffect(() => {
     if (timeLeft === 0) {
-      console.log(`intervalRef.current: ${intervalRef.current}`);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
@@ -85,6 +84,25 @@ export default function MapScreen() {
       }
     };
   }, []);
+
+  if (gameState === GameState.Finished) {
+    return (
+      <View style={{ position: "relative", flex: 1, backgroundColor: "blue" }}>
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            alignItems: "center",
+            backgroundColor: "yellow",
+          }}
+        >
+          <Text style={{ backgroundColor: "red" }}>game ended</Text>
+        </View>
+      </View>
+    );
+  }
 
   if (gameState === GameState.Initial) {
     return (
@@ -117,19 +135,13 @@ export default function MapScreen() {
     );
   }
 
-  if (gameState === GameState.Finished) {
-    // TODO: Handle game finished state
-    return <Text>game ended</Text>;
-  }
-
   return (
-    <View style={{ position: "relative", flex: 1, backgroundColor: "black" }}>
+    <View style={{ position: "relative", flex: 1 }}>
       <Stack.Screen
         options={{
           title: `Score: ${score}`,
         }}
       />
-      <Text>{currentEmote}</Text>
       {gameRef.current.emotes.map((emote) => {
         return (
           <Pressable
@@ -163,6 +175,19 @@ export default function MapScreen() {
           </Pressable>
         );
       })}
+
+      <View
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 0,
+          right: 0,
+          alignItems: "center",
+        }}
+      >
+        <Text variant="headlineMedium">{currentEmote}</Text>
+      </View>
+
       <Avatar.Text
         label={`${timeLeft}`}
         style={{

@@ -1,4 +1,4 @@
-import { SplashScreen, Slot, Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { useFonts, Inter_500Medium } from "@expo-google-fonts/inter";
 import { useEffect } from "react";
 import { PaperProvider } from "react-native-paper";
