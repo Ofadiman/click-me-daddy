@@ -7,6 +7,8 @@ import { Emote, emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
+
 export const ONE_SECOND = 1000;
 export const GAME_CONSTANTS = {
   GAME_TIME: 3,
@@ -89,7 +91,7 @@ export default function MapScreen() {
 
   if (gameState === GameState.Initial) {
     return (
-      <View>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Button
           onPress={() => {
             setGameState(GameState.Playing);
@@ -98,8 +100,12 @@ export default function MapScreen() {
               setTimeLeft((prev) => prev - 1);
             }, ONE_SECOND);
           }}
+          mode="contained"
         >
-          Play
+          LETS GO{" "}
+          {Array.from({ length: 10 })
+            .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
+            .join("")}
         </Button>
       </View>
     );
