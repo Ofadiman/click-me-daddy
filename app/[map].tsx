@@ -1,6 +1,6 @@
 import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
 import { Pressable, View, useWindowDimensions } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Avatar, Button, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
@@ -11,7 +11,7 @@ const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
 export const ONE_SECOND = 1000;
 export const GAME_CONSTANTS = {
-  GAME_TIME: 3,
+  GAME_TIME: 30,
 };
 
 enum GameState {
@@ -123,49 +123,54 @@ export default function MapScreen() {
   }
 
   return (
-    <>
+    <View style={{ position: "relative", flex: 1, backgroundColor: "black" }}>
       <Stack.Screen
         options={{
           title: `Score: ${score}`,
         }}
       />
-      <Text>Time left: {timeLeft}</Text>
       <Text>{currentEmote}</Text>
-      <View style={{ position: "relative", height: 500 }}>
-        {gameRef.current.emotes.map((emote) => {
-          return (
-            <Pressable
-              onPress={() => {
-                if (emote.name === currentEmote) {
-                  setScore((prev) => prev + 1);
-                  setCurrentEmote(
-                    faker.helpers.arrayElement(
-                      gameRef.current.emotes.map((emote) => emote.name),
-                    ),
-                  );
-                }
+      {gameRef.current.emotes.map((emote) => {
+        return (
+          <Pressable
+            onPress={() => {
+              if (emote.name === currentEmote) {
+                setScore((prev) => prev + 1);
+                setCurrentEmote(
+                  faker.helpers.arrayElement(
+                    gameRef.current.emotes.map((emote) => emote.name),
+                  ),
+                );
+              }
+            }}
+            key={emote.name}
+            style={{
+              left: emote.position.x,
+              top: emote.position.y,
+              position: "absolute",
+            }}
+          >
+            <Image
+              source={{
+                uri: emote.uri,
+                isAnimated: emote.isAnimated,
               }}
-              key={emote.name}
               style={{
-                left: emote.position.x,
-                top: emote.position.y,
-                position: "absolute",
+                height: emote.size.height / 2,
+                width: emote.size.width / 2,
               }}
-            >
-              <Image
-                source={{
-                  uri: emote.uri,
-                  isAnimated: emote.isAnimated,
-                }}
-                style={{
-                  height: emote.size.height / 2,
-                  width: emote.size.width / 2,
-                }}
-              />
-            </Pressable>
-          );
-        })}
-      </View>
-    </>
+            />
+          </Pressable>
+        );
+      })}
+      <Avatar.Text
+        label={`${timeLeft}`}
+        style={{
+          position: "absolute",
+          right: 20,
+          bottom: 20,
+        }}
+      />
+    </View>
   );
 }
