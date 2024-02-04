@@ -88,23 +88,32 @@ export default function MapScreen() {
 
   if (gameState === GameState.Initial) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Button
-          onPress={() => {
-            setGameState(GameState.Playing);
-
-            intervalRef.current = setInterval(() => {
-              setTimeLeft((prev) => prev - 1);
-            }, ONE_SECOND);
+      <>
+        <Stack.Screen
+          options={{
+            title: `Waste time clicking on ${localSearchParams.map}`,
           }}
-          mode="contained"
+        />
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          LETS GO{" "}
-          {Array.from({ length: 10 })
-            .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
-            .join("")}
-        </Button>
-      </View>
+          <Button
+            onPress={() => {
+              setGameState(GameState.Playing);
+
+              intervalRef.current = setInterval(() => {
+                setTimeLeft((prev) => prev - 1);
+              }, ONE_SECOND);
+            }}
+            mode="contained"
+          >
+            LETS GO{" "}
+            {Array.from({ length: 10 })
+              .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
+              .join("")}
+          </Button>
+        </View>
+      </>
     );
   }
 
