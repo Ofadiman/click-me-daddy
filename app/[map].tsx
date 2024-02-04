@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
 import { Pressable, View, useWindowDimensions } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { Image } from "expo-image";
@@ -28,18 +28,15 @@ type GameEmote = Emote & {
 };
 
 type Game = {
-  isPlaying: boolean;
-  points: number;
   emotes: GameEmote[];
 };
 
 export default function MapScreen() {
+  const [score, setScore] = useState(0);
   const dimensions = useWindowDimensions();
   const localSearchParams = useLocalSearchParams();
   const insets = useSafeAreaInsets();
   const gameRef = useRef<Game>({
-    isPlaying: true,
-    points: 0,
     emotes: emotes[localSearchParams.map as keyof typeof emotes].map(
       (emote) => {
         const gamote: GameEmote = {
@@ -119,19 +116,19 @@ export default function MapScreen() {
   return (
     <>
       <Stack.Screen
-        options={{ headerTitle: `Map: ${localSearchParams.map as string}` }}
+        options={{
+          title: `Score: ${score}`,
+        }}
       />
       <Text>Time left: {timeLeft}</Text>
-      <Text>
-        emote: {currentEmote}, points: {gameRef.current.points}
-      </Text>
+      <Text>{currentEmote}</Text>
       <View style={{ position: "relative", height: 500 }}>
         {gameRef.current.emotes.map((emote) => {
           return (
             <Pressable
               onPress={() => {
                 if (emote.name === currentEmote) {
-                  gameRef.current.points++;
+                  setScore((prev) => prev + 1);
                   setCurrentEmote(
                     faker.helpers.arrayElement(
                       gameRef.current.emotes.map((emote) => emote.name),
