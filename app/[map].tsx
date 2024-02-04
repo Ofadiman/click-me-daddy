@@ -1,11 +1,11 @@
 import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
-import { Pressable, View, useWindowDimensions } from "react-native";
+import { Pressable, ScaledSize, View, useWindowDimensions } from "react-native";
 import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
@@ -20,48 +20,48 @@ enum GameState {
   Finished = "finished",
 }
 
-type GameEmote = Emote & {
-  position: {
-    x: number;
-    y: number;
-  };
+type Game = {
+  emotes: Emote[];
 };
 
-type Game = {
-  emotes: GameEmote[];
+const shuffleEmotes = ({
+  emotes,
+  dimensions,
+  insets,
+}: {
+  emotes: Emote[];
+  dimensions: ScaledSize;
+  insets: EdgeInsets;
+}): Emote[] => {
+  return emotes.map((emote) => {
+    const gamote: Emote = {
+      ...emote,
+      position: {
+        x: faker.number.int({
+          min: 0,
+          max: dimensions.width - emote.size.width / 2,
+        }),
+        y: faker.number.int({
+          min: 0 + insets.top,
+          max: dimensions.height - emote.size.height / 2,
+        }),
+      },
+    };
+
+    return gamote;
+  });
 };
 
 export default function MapScreen() {
-  const [score, setScore] = useState(0);
   const dimensions = useWindowDimensions();
   const localSearchParams = useLocalSearchParams();
   const insets = useSafeAreaInsets();
-  const gameRef = useRef<Game>({
-    emotes: emotes[localSearchParams.map as keyof typeof emotes].map(
-      (emote) => {
-        const gamote: GameEmote = {
-          ...emote,
-          position: {
-            x: faker.number.int({
-              min: 0,
-              max: dimensions.width - emote.size.width / 2,
-            }),
-            y: faker.number.int({
-              min: 0 + insets.top,
-              max: dimensions.height - emote.size.height / 2,
-            }),
-          },
-        };
 
-        return gamote;
-      },
-    ),
+  const [score, setScore] = useState(0);
+  const gameRef = useRef<Game>({
+    emotes: emotes[localSearchParams.map as keyof typeof emotes],
   });
-  const [currentEmote, setCurrentEmote] = useState<string>(
-    faker.helpers.arrayElement(
-      gameRef.current.emotes.map((emote) => emote.name),
-    ),
-  );
+  const [currentEmote, setCurrentEmote] = useState<string>("");
   const [gameState, setGameState] = useState<GameState>(GameState.Initial);
   const intervalRef = useRef<null | number>(null);
   const [timeLeft, setTimeLeft] = useState(GAME_CONSTANTS.GAME_TIME);
@@ -72,7 +72,6 @@ export default function MapScreen() {
         clearInterval(intervalRef.current);
       }
 
-      setTimeLeft(GAME_CONSTANTS.GAME_TIME);
       setGameState(GameState.Finished);
     }
   }, [timeLeft]);
@@ -85,6 +84,27 @@ export default function MapScreen() {
     };
   }, []);
 
+  const handleGameStart = () => {
+    setScore(0);
+    setGameState(GameState.Playing);
+    setTimeLeft(GAME_CONSTANTS.GAME_TIME);
+    setCurrentEmote(
+      faker.helpers.arrayElement(
+        gameRef.current.emotes.map((emote) => emote.name),
+      ),
+    );
+
+    gameRef.current.emotes = shuffleEmotes({
+      emotes: gameRef.current.emotes,
+      dimensions,
+      insets,
+    });
+
+    intervalRef.current = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, ONE_SECOND);
+  };
+
   if (gameState === GameState.Initial) {
     return (
       <>
@@ -96,16 +116,7 @@ export default function MapScreen() {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Button
-            onPress={() => {
-              setGameState(GameState.Playing);
-
-              intervalRef.current = setInterval(() => {
-                setTimeLeft((prev) => prev - 1);
-              }, ONE_SECOND);
-            }}
-            mode="contained"
-          >
+          <Button onPress={handleGameStart} mode="contained">
             LETS GO{" "}
             {Array.from({ length: 10 })
               .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
@@ -192,14 +203,7 @@ export default function MapScreen() {
               <Text variant="bodyMedium">Your score: {score}</Text>
             </Card.Content>
             <Card.Actions>
-              <Button
-                onPress={() => {
-                  // TODO: Restart the game
-                  setGameState(GameState.Playing);
-                }}
-              >
-                Play again
-              </Button>
+              <Button onPress={handleGameStart}>Play again</Button>
             </Card.Actions>
           </Card>
         </Modal>

@@ -6,6 +6,10 @@ export type Emote = {
     width: number;
     height: number;
   };
+  position: {
+    x: number;
+    y: number;
+  };
 };
 
 export const brugEmotes: Emote[] = [
@@ -17,6 +21,10 @@ export const brugEmotes: Emote[] = [
       width: 280,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugHappy",
@@ -25,6 +33,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 188,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -35,6 +47,10 @@ export const brugEmotes: Emote[] = [
       width: 188,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugThis",
@@ -43,6 +59,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 280,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -53,6 +73,10 @@ export const brugEmotes: Emote[] = [
       width: 188,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugBox",
@@ -61,6 +85,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 224,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -71,6 +99,10 @@ export const brugEmotes: Emote[] = [
       width: 212,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugBedge",
@@ -79,6 +111,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 128,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -89,6 +125,10 @@ export const brugEmotes: Emote[] = [
       width: 128,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugWokege",
@@ -97,6 +137,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 128,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -107,6 +151,10 @@ export const brugEmotes: Emote[] = [
       width: 128,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugDrums",
@@ -115,6 +163,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 128,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -125,6 +177,10 @@ export const brugEmotes: Emote[] = [
       width: 128,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugStop",
@@ -133,6 +189,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 128,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
   {
@@ -143,6 +203,10 @@ export const brugEmotes: Emote[] = [
       width: 128,
       height: 128,
     },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     name: "brugPot",
@@ -151,6 +215,10 @@ export const brugEmotes: Emote[] = [
     size: {
       width: 128,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
 ];
@@ -163,6 +231,10 @@ export const pepeEmotes: Emote[] = [
     size: {
       width: 132,
       height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
     },
   },
 ];
