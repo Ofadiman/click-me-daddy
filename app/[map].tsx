@@ -1,6 +1,6 @@
 import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
 import { Pressable, View, useWindowDimensions } from "react-native";
-import { Avatar, Button, Text } from "react-native-paper";
+import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
@@ -84,25 +84,6 @@ export default function MapScreen() {
       }
     };
   }, []);
-
-  if (gameState === GameState.Finished) {
-    return (
-      <View style={{ position: "relative", flex: 1, backgroundColor: "blue" }}>
-        <View
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            alignItems: "center",
-            backgroundColor: "yellow",
-          }}
-        >
-          <Text style={{ backgroundColor: "red" }}>game ended</Text>
-        </View>
-      </View>
-    );
-  }
 
   if (gameState === GameState.Initial) {
     return (
@@ -196,6 +177,33 @@ export default function MapScreen() {
           bottom: 20,
         }}
       />
+
+      <Portal>
+        <Modal dismissable={false} visible={gameState === GameState.Finished}>
+          <Card
+            style={{
+              alignSelf: "center",
+              width: "80%",
+            }}
+          >
+            <Card.Content>
+              {/* TODO: Replace LUL text to actual emote */}
+              <Text variant="titleLarge">You lost LUL</Text>
+              <Text variant="bodyMedium">Your score: {score}</Text>
+            </Card.Content>
+            <Card.Actions>
+              <Button
+                onPress={() => {
+                  // TODO: Restart the game
+                  setGameState(GameState.Playing);
+                }}
+              >
+                Play again
+              </Button>
+            </Card.Actions>
+          </Card>
+        </Modal>
+      </Portal>
     </View>
   );
 }
