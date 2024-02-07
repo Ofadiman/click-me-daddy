@@ -1,7 +1,12 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Pressable, ScaledSize, View, useWindowDimensions } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScaledSize,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
-import { Image } from "expo-image";
 import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
@@ -157,7 +162,6 @@ export default function MapScreen() {
             <Image
               source={{
                 uri: emote.uri,
-                isAnimated: emote.isAnimated,
               }}
               style={{
                 height: emote.size.height / 2,

@@ -1,13 +1,15 @@
 import { emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
-import { Image } from "expo-image";
+import { Audio } from "expo-av";
+import { SoundObject } from "expo-av/build/Audio";
 import { Link, Stack } from "expo-router";
-import { FlatList, Pressable, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Button, FlatList, Image, Pressable, Text, View } from "react-native";
 
 faker.seed(1);
 
 const maps = Object.keys(emotes).sort();
+
+let soundObject: SoundObject | null;
 
 export default function IndexScreen() {
   return (
@@ -17,6 +19,28 @@ export default function IndexScreen() {
           headerTitle: "Choose your poison",
         }}
       ></Stack.Screen>
+
+      <Button
+        title="Play"
+        onPress={async () => {
+          try {
+            soundObject = await Audio.Sound.createAsync(
+              require("../assets/music/firma_reprezentuje_jp.mp3"),
+            );
+            await soundObject.sound.playAsync();
+          } catch (e) {
+            console.error(`fucking not working`);
+            console.error(e);
+          }
+        }}
+      />
+      <Button
+        title="Pause"
+        onPress={async () => {
+          await soundObject?.sound.pauseAsync();
+        }}
+      />
+
       <FlatList
         keyExtractor={(item) => item}
         data={maps}
@@ -47,7 +71,6 @@ export default function IndexScreen() {
                 <Image
                   source={{
                     uri: "https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp",
-                    isAnimated: false,
                   }}
                   style={{
                     height: 128,
