@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Link, Stack, useLocalSearchParams } from "expo-router";
 import {
   Image,
   Pressable,
@@ -207,6 +207,9 @@ export default function MapScreen() {
               <Text variant="bodyMedium">Your score: {score}</Text>
             </Card.Content>
             <Card.Actions>
+              <Link href="/" asChild>
+                <Button onPress={handleGameStart}>Maps</Button>
+              </Link>
               <Button onPress={handleGameStart}>Play again</Button>
             </Card.Actions>
           </Card>
