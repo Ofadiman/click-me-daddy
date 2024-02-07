@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { Pressable, ScaledSize, View, useWindowDimensions } from "react-native";
 import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
 import { Image } from "expo-image";
