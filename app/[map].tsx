@@ -8,10 +8,11 @@ import {
 } from "react-native";
 import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Emote, emotes } from "@/constants/emotes";
+import { emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { useSong } from "@/utils/useSong";
 import { shuffleEmotes } from "@/utils/shuffleEmotes";
+import { Emote } from "@/types";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
@@ -159,8 +160,8 @@ export default function MapScreen() {
               }}
               key={emote.name}
               style={{
-                left: emote.position.x,
-                top: emote.position.y,
+                left: emote.x,
+                top: emote.y,
                 position: "absolute",
               }}
             >
@@ -169,8 +170,8 @@ export default function MapScreen() {
                   uri: emote.uri,
                 }}
                 style={{
-                  height: emote.size.height,
-                  width: emote.size.width,
+                  height: emote.height,
+                  width: emote.width,
                 }}
               />
             </Pressable>

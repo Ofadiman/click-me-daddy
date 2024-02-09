@@ -1,17 +1,9 @@
-import { Emote } from "@/constants/emotes";
+import { Emote, Rectangle } from "@/types";
 import { faker } from "@faker-js/faker";
 import { clone } from "ramda";
 import { LayoutRectangle, ScaledSize } from "react-native";
 
-// TODO: Create universal type to represent an object on gird (e.g. Rectangle).
-type Overlappable = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
-
-const isOverlapping = (first: Overlappable, second: Overlappable): boolean => {
+const isOverlapping = (first: Rectangle, second: Rectangle): boolean => {
   if (first.x > second.x + second.width || second.x > first.x + first.width) {
     return false;
   }
@@ -33,7 +25,7 @@ export const shuffleEmotes = ({
 }: {
   emotes: Emote[];
   layout: LayoutRectangle;
-  obstacles: Array<{ x: number; y: number; width: number; height: number }>;
+  obstacles: Array<Rectangle>;
   dimensions: ScaledSize;
 }): Emote[] => {
   const scale = (value: number) => {
@@ -55,14 +47,14 @@ export const shuffleEmotes = ({
         min: 0 + EMOTE_PADDING,
         max:
           Math.round(layout.width) -
-          scale(emote.size.width) -
+          scale(emote.width) -
           EMOTE_PADDING * dimensions.scale,
       });
       const y = faker.number.int({
         min: 0 + EMOTE_PADDING,
         max:
           Math.round(layout.height) -
-          scale(emote.size.height) -
+          scale(emote.height) -
           EMOTE_PADDING * dimensions.scale,
       });
 
@@ -72,14 +64,14 @@ export const shuffleEmotes = ({
             {
               x,
               y,
-              width: scale(emote.size.width),
-              height: scale(emote.size.height),
+              width: scale(emote.width),
+              height: scale(emote.height),
             },
             {
-              x: randomizedEmote.position.x,
-              y: randomizedEmote.position.y,
-              width: randomizedEmote.size.width,
-              height: randomizedEmote.size.height,
+              x: randomizedEmote.x,
+              y: randomizedEmote.y,
+              width: randomizedEmote.width,
+              height: randomizedEmote.height,
             },
           )
         ) {
@@ -93,8 +85,8 @@ export const shuffleEmotes = ({
             {
               x,
               y,
-              width: scale(emote.size.width),
-              height: scale(emote.size.height),
+              width: scale(emote.width),
+              height: scale(emote.height),
             },
             {
               x: obstacle.x,
@@ -110,10 +102,10 @@ export const shuffleEmotes = ({
 
       if (isEmoteOverlappingWithShuffledEmotes === false) {
         const copy = clone(emote);
-        copy.position.x = x;
-        copy.position.y = y;
-        copy.size.width = scale(copy.size.width);
-        copy.size.height = scale(copy.size.height);
+        copy.x = x;
+        copy.y = y;
+        copy.width = scale(copy.width);
+        copy.height = scale(copy.height);
         randomizedEmotes.push(copy);
       }
     }
