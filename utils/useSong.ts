@@ -16,7 +16,7 @@ export const useSong = () => {
 
   useEffect(() => {
     return () => {
-      (async () => {
+      void (async () => {
         if (soundObjectRef.current) {
           await soundObjectRef.current.sound.stopAsync();
           await soundObjectRef.current.sound.unloadAsync();
@@ -26,6 +26,10 @@ export const useSong = () => {
   }, []);
 
   const next = async () => {
+    if (soundObjectRef.current) {
+      soundObjectRef.current.sound.unloadAsync();
+    }
+
     soundObjectRef.current = await Audio.Sound.createAsync(
       songs[index % songs.length],
     );

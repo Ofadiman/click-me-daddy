@@ -237,6 +237,19 @@ export const pepeEmotes: Emote[] = [
       y: 0,
     },
   },
+  {
+    name: "pepeLaugh",
+    uri: "https://cdn.7tv.app/emote/60afbb3952a13d1adb34b2a1/4x.webp",
+    isAnimated: true,
+    size: {
+      width: 128,
+      height: 128,
+    },
+    position: {
+      x: 0,
+      y: 0,
+    },
+  },
 ];
 
 export const emotes = {
