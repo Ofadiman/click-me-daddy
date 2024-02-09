@@ -11,17 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
-import { Audio } from "expo-av";
-import { SoundObject } from "expo-av/build/Audio";
-
-const dawidJasperZwariowanaNoc = require("../assets/music/dawid_jasper_zwariowana_noc.mp3");
-const figoSamogonyErotycznePifPaf = require("../assets/music/figo_samogony_erotyczne_pif_paf.mp3");
-const firmaReprezentujeJp = require("../assets/music/firma_reprezentuje_jp.mp3");
-const songs = faker.helpers.shuffle([
-  dawidJasperZwariowanaNoc,
-  figoSamogonyErotycznePifPaf,
-  firmaReprezentujeJp,
-]);
+import { useSong } from "@/utils/useSong";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
@@ -73,7 +63,7 @@ export default function MapScreen() {
   const localSearchParams = useLocalSearchParams();
   const insets = useSafeAreaInsets();
 
-  const soundObjectRef = useRef<SoundObject | null>(null);
+  const song = useSong();
   const [score, setScore] = useState(0);
   const gameRef = useRef<Game>({
     emotes: emotes[localSearchParams.map as keyof typeof emotes],
@@ -91,9 +81,7 @@ export default function MapScreen() {
         }
 
         setGameState(GameState.Finished);
-        if (soundObjectRef.current) {
-          await soundObjectRef.current.sound.stopAsync();
-        }
+        await song.stop();
       }
     })();
   }, [timeLeft]);
@@ -103,18 +91,11 @@ export default function MapScreen() {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-
-      if (soundObjectRef.current) {
-        soundObjectRef.current.sound.unloadAsync();
-      }
     };
   }, []);
 
   const handleGameStart = async () => {
-    soundObjectRef.current = await Audio.Sound.createAsync(
-      faker.helpers.arrayElement(songs),
-    );
-    await soundObjectRef.current.sound.playAsync();
+    await song.next();
 
     gameRef.current.emotes = shuffleEmotes({
       emotes: gameRef.current.emotes,
