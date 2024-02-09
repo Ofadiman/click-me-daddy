@@ -11,12 +11,23 @@ import { useEffect, useRef, useState } from "react";
 import { Emote, emotes } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import { Audio } from "expo-av";
+import { SoundObject } from "expo-av/build/Audio";
+
+const dawidJasperZwariowanaNoc = require("../assets/music/dawid_jasper_zwariowana_noc.mp3");
+const figoSamogonyErotycznePifPaf = require("../assets/music/figo_samogony_erotyczne_pif_paf.mp3");
+const firmaReprezentujeJp = require("../assets/music/firma_reprezentuje_jp.mp3");
+const songs = faker.helpers.shuffle([
+  dawidJasperZwariowanaNoc,
+  figoSamogonyErotycznePifPaf,
+  firmaReprezentujeJp,
+]);
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
 export const ONE_SECOND = 1000;
 export const GAME_CONSTANTS = {
-  GAME_TIME: 30,
+  GAME_TIME: 10,
 };
 
 enum GameState {
@@ -62,6 +73,7 @@ export default function MapScreen() {
   const localSearchParams = useLocalSearchParams();
   const insets = useSafeAreaInsets();
 
+  const soundObjectRef = useRef<SoundObject | null>(null);
   const [score, setScore] = useState(0);
   const gameRef = useRef<Game>({
     emotes: emotes[localSearchParams.map as keyof typeof emotes],
@@ -72,13 +84,18 @@ export default function MapScreen() {
   const [timeLeft, setTimeLeft] = useState(GAME_CONSTANTS.GAME_TIME);
 
   useEffect(() => {
-    if (timeLeft === 0) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+    (async () => {
+      if (timeLeft === 0) {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
 
-      setGameState(GameState.Finished);
-    }
+        setGameState(GameState.Finished);
+        if (soundObjectRef.current) {
+          await soundObjectRef.current.sound.stopAsync();
+        }
+      }
+    })();
   }, [timeLeft]);
 
   useEffect(() => {
@@ -86,10 +103,25 @@ export default function MapScreen() {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+
+      if (soundObjectRef.current) {
+        soundObjectRef.current.sound.unloadAsync();
+      }
     };
   }, []);
 
-  const handleGameStart = () => {
+  const handleGameStart = async () => {
+    soundObjectRef.current = await Audio.Sound.createAsync(
+      faker.helpers.arrayElement(songs),
+    );
+    await soundObjectRef.current.sound.playAsync();
+
+    gameRef.current.emotes = shuffleEmotes({
+      emotes: gameRef.current.emotes,
+      dimensions,
+      insets,
+    });
+
     setScore(0);
     setGameState(GameState.Playing);
     setTimeLeft(GAME_CONSTANTS.GAME_TIME);
@@ -98,12 +130,6 @@ export default function MapScreen() {
         gameRef.current.emotes.map((emote) => emote.name),
       ),
     );
-
-    gameRef.current.emotes = shuffleEmotes({
-      emotes: gameRef.current.emotes,
-      dimensions,
-      insets,
-    });
 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
