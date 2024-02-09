@@ -16,10 +16,13 @@ import { Emote } from "@/types";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
-export const ONE_SECOND = 1000;
-export const GAME_CONSTANTS = {
-  GAME_TIME: 10,
-};
+const TIMER_WIDTH = 64;
+const TIMER_HEIGHT = 64;
+const TIMER_OFFSET_BOTTOM = 20;
+const TIMER_OFFSET_RIGHT = 20;
+
+const ONE_SECOND = 1000;
+const GAME_TIME_IN_SECONDS = 10;
 
 enum GameState {
   Initial = "initial",
@@ -47,7 +50,7 @@ export default function MapScreen() {
   const [currentEmote, setCurrentEmote] = useState<string>("");
   const [gameState, setGameState] = useState<GameState>(GameState.Initial);
   const intervalRef = useRef<null | NodeJS.Timeout>(null);
-  const [timeLeft, setTimeLeft] = useState(GAME_CONSTANTS.GAME_TIME);
+  const [timeLeft, setTimeLeft] = useState(GAME_TIME_IN_SECONDS);
 
   useEffect(() => {
     (async () => {
@@ -78,14 +81,21 @@ export default function MapScreen() {
     gameRef.current.emotes = shuffleEmotes({
       emotes: emoteSetRef.current,
       layout: layout,
-      obstacles: [],
+      obstacles: [
+        {
+          x: layout.width - TIMER_WIDTH - TIMER_OFFSET_RIGHT,
+          y: layout.height - TIMER_HEIGHT - TIMER_OFFSET_BOTTOM,
+          width: TIMER_WIDTH,
+          height: TIMER_HEIGHT,
+        },
+      ],
       dimensions,
     });
 
     await song.next();
     setGameState(GameState.Playing);
     setScore(0);
-    setTimeLeft(GAME_CONSTANTS.GAME_TIME);
+    setTimeLeft(GAME_TIME_IN_SECONDS);
     setCurrentEmote(
       faker.helpers.arrayElement(
         gameRef.current.emotes.map((emote) => emote.name),
@@ -182,8 +192,8 @@ export default function MapScreen() {
           label={`${timeLeft}`}
           style={{
             position: "absolute",
-            right: 20,
-            bottom: 20,
+            right: TIMER_OFFSET_RIGHT,
+            bottom: TIMER_OFFSET_BOTTOM,
           }}
         />
 
