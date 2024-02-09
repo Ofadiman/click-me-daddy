@@ -208,7 +208,7 @@ export default function MapScreen() {
             </Card.Content>
             <Card.Actions>
               <Link href="/" asChild>
-                <Button onPress={handleGameStart}>Maps</Button>
+                <Button>Maps</Button>
               </Link>
               <Button onPress={handleGameStart}>Play again</Button>
             </Card.Actions>
