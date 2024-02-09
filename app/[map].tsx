@@ -109,14 +109,26 @@ export default function MapScreen() {
 
   if (gameState === GameState.Initial) {
     return (
-      <>
+      <Fragment>
         <Stack.Screen
           options={{
             title: `Waste time clicking on ${localSearchParams.map}`,
           }}
         />
+
         <View
-          onLayout={(event) => {
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text variant="headlineMedium" style={{ color: "transparent" }}>
+            {currentEmote}
+          </Text>
+        </View>
+
+        <View
+          onLayout={async (event) => {
             setLayout(event.nativeEvent.layout);
           }}
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -133,7 +145,7 @@ export default function MapScreen() {
               .join("")}
           </Button>
         </View>
-      </>
+      </Fragment>
     );
   }
 
