@@ -17,6 +17,11 @@ const isOverlapping = (first: Rectangle, second: Rectangle): boolean => {
 
 const EMOTE_PADDING = 5;
 
+const SCALING_FACTOR = 2;
+const scale = (value: number) => {
+  return Math.round(value / SCALING_FACTOR);
+};
+
 export const shuffleEmotes = ({
   emotes,
   layout,
@@ -28,10 +33,6 @@ export const shuffleEmotes = ({
   obstacles: Array<Rectangle>;
   dimensions: ScaledSize;
 }): Emote[] => {
-  const scale = (value: number) => {
-    return Math.round(value / 2);
-  };
-
   const randomizedEmotes: Emote[] = [];
 
   for (let i = 0; i < emotes.length; i++) {
