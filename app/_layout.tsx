@@ -5,6 +5,7 @@ export default function Layout() {
   return (
     <PaperProvider>
       <Stack>
+        <Stack.Screen name="index" redirect />
         <Stack.Screen
           name="(tabs)"
           options={{
