@@ -1,33 +1,26 @@
-import { EMOTES } from "@/constants/emotes";
-import { faker } from "@faker-js/faker";
-import { Audio } from "expo-av";
-import { SoundObject } from "expo-av/build/Audio";
-import { Link, Stack } from "expo-router";
-import { Image } from "expo-image";
-import {
-  Button,
-  FlatList,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
-import { useStatistics } from "@/utils/useStatistics";
+import { EMOTES } from '@/constants/emotes'
+import { faker } from '@faker-js/faker'
+import { Audio } from 'expo-av'
+import { SoundObject } from 'expo-av/build/Audio'
+import { Link, Stack } from 'expo-router'
+import { Image } from 'expo-image'
+import { Button, FlatList, Pressable, ScrollView, Text, View } from 'react-native'
+import { useStatistics } from '@/utils/useStatistics'
 
-faker.seed(1);
+faker.seed(1)
 
-const maps = Object.keys(EMOTES).sort();
+const maps = Object.keys(EMOTES).sort()
 
-let soundObject: SoundObject | null;
+let soundObject: SoundObject | null
 
 export default function IndexScreen() {
-  const statistics = useStatistics();
+  const statistics = useStatistics()
 
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Choose your poison",
+          headerTitle: 'Choose your poison',
         }}
       ></Stack.Screen>
 
@@ -36,19 +29,19 @@ export default function IndexScreen() {
         onPress={async () => {
           try {
             soundObject = await Audio.Sound.createAsync(
-              require("../assets/music/firma_reprezentuje_jp.mp3"),
-            );
-            await soundObject.sound.playAsync();
+              require('../assets/music/firma_reprezentuje_jp.mp3'),
+            )
+            await soundObject.sound.playAsync()
           } catch (e) {
-            console.error(`fucking not working`);
-            console.error(e);
+            console.error(`fucking not working`)
+            console.error(e)
           }
         }}
       />
       <Button
         title="Pause"
         onPress={async () => {
-          await soundObject?.sound.pauseAsync();
+          await soundObject?.sound.pauseAsync()
         }}
       />
 
@@ -64,7 +57,7 @@ export default function IndexScreen() {
             <Link
               key={item}
               href={{
-                pathname: "/[map]",
+                pathname: '/[map]',
                 params: {
                   map: item,
                 },
@@ -76,12 +69,12 @@ export default function IndexScreen() {
             >
               <Pressable
                 style={{
-                  flexDirection: "row",
+                  flexDirection: 'row',
                 }}
               >
                 <Image
                   source={{
-                    uri: "https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp",
+                    uri: 'https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp',
                   }}
                   style={{
                     height: 128,
@@ -90,8 +83,8 @@ export default function IndexScreen() {
                 />
                 <View
                   style={{
-                    justifyContent: "center",
-                    alignItems: "center",
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     flex: 1,
                   }}
                 >
@@ -100,12 +93,12 @@ export default function IndexScreen() {
                 </View>
               </Pressable>
             </Link>
-          );
+          )
         }}
       ></FlatList>
       <ScrollView>
         <Text>{JSON.stringify(statistics.get(), null, 2)}</Text>
       </ScrollView>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { Emote, Round } from "@/types";
-import { useRef } from "react";
+import { Emote, Round } from '@/types'
+import { useRef } from 'react'
 
 export const useRound = () => {
   const roundRef = useRef<Round>({
@@ -7,23 +7,23 @@ export const useRound = () => {
     clicks: [],
     missclicks: 0,
     timestamp: new Date().toISOString(),
-  });
+  })
 
   const recordEmotePress = (emote: Emote) => {
-    roundRef.current.clicks.push(emote);
-  };
+    roundRef.current.clicks.push(emote)
+  }
 
   const incrementTime = () => {
-    roundRef.current.time++;
-  };
+    roundRef.current.time++
+  }
 
   const state = () => {
-    return roundRef.current;
-  };
+    return roundRef.current
+  }
 
   const score = () => {
-    return roundRef.current.clicks.length;
-  };
+    return roundRef.current.clicks.length
+  }
 
   return {
     new: () => {
@@ -32,11 +32,11 @@ export const useRound = () => {
         clicks: [],
         missclicks: 0,
         timestamp: new Date().toISOString(),
-      };
+      }
     },
     score,
     state,
     recordEmotePress,
     incrementTime,
-  };
-};
+  }
+}

@@ -1,9 +1,9 @@
-import { Emote } from "@/types";
+import { Emote } from '@/types'
 
 export const BRUG_EMOTES: Emote[] = [
   {
-    name: "brugJam",
-    uri: "https://cdn.7tv.app/emote/6216855baff1c45709b481dc/4x.webp",
+    name: 'brugJam',
+    uri: 'https://cdn.7tv.app/emote/6216855baff1c45709b481dc/4x.webp',
     isAnimated: true,
     width: 280,
     height: 128,
@@ -11,8 +11,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugHappy",
-    uri: "https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp",
+    name: 'brugHappy',
+    uri: 'https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp',
     isAnimated: false,
     width: 188,
     height: 128,
@@ -20,8 +20,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugSad",
-    uri: "https://cdn.7tv.app/emote/61fabe5c9f7bac13c42e14d0/4x.webp",
+    name: 'brugSad',
+    uri: 'https://cdn.7tv.app/emote/61fabe5c9f7bac13c42e14d0/4x.webp',
     isAnimated: false,
     width: 188,
     height: 128,
@@ -29,8 +29,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugThis",
-    uri: "https://cdn.7tv.app/emote/621683a378f6e57762f9bfe3/4x.webp",
+    name: 'brugThis',
+    uri: 'https://cdn.7tv.app/emote/621683a378f6e57762f9bfe3/4x.webp',
     isAnimated: true,
     width: 280,
     height: 128,
@@ -38,8 +38,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugEZ",
-    uri: "https://cdn.7tv.app/emote/61fabf88017b2a6f053af653/4x.webp",
+    name: 'brugEZ',
+    uri: 'https://cdn.7tv.app/emote/61fabf88017b2a6f053af653/4x.webp',
     isAnimated: false,
     width: 188,
     height: 128,
@@ -47,8 +47,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugBox",
-    uri: "https://cdn.7tv.app/emote/61e815e841a16ffa4aa288a5/4x.webp",
+    name: 'brugBox',
+    uri: 'https://cdn.7tv.app/emote/61e815e841a16ffa4aa288a5/4x.webp',
     isAnimated: true,
     width: 224,
     height: 128,
@@ -56,8 +56,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugChef",
-    uri: "https://cdn.7tv.app/emote/61e0a72b37dd8d85f2e0c044/4x.webp",
+    name: 'brugChef',
+    uri: 'https://cdn.7tv.app/emote/61e0a72b37dd8d85f2e0c044/4x.webp',
     isAnimated: true,
     width: 212,
     height: 128,
@@ -65,8 +65,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugBedge",
-    uri: "https://cdn.7tv.app/emote/61e9379ff20dcd151f06162e/4x.webp",
+    name: 'brugBedge',
+    uri: 'https://cdn.7tv.app/emote/61e9379ff20dcd151f06162e/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -74,8 +74,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "cmonBrug",
-    uri: "https://cdn.7tv.app/emote/615739fcb785e05aa26c071c/4x.webp",
+    name: 'cmonBrug',
+    uri: 'https://cdn.7tv.app/emote/615739fcb785e05aa26c071c/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -83,8 +83,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugWokege",
-    uri: "https://cdn.7tv.app/emote/61e938ce699aab943eab978a/4x.webp",
+    name: 'brugWokege',
+    uri: 'https://cdn.7tv.app/emote/61e938ce699aab943eab978a/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -92,8 +92,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugSalute",
-    uri: "https://cdn.7tv.app/emote/622642c5043b2a353ec880c3/4x.webp",
+    name: 'brugSalute',
+    uri: 'https://cdn.7tv.app/emote/622642c5043b2a353ec880c3/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -101,8 +101,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugDrums",
-    uri: "https://cdn.7tv.app/emote/6314c810ae7e63d8ec73f368/4x.webp",
+    name: 'brugDrums',
+    uri: 'https://cdn.7tv.app/emote/6314c810ae7e63d8ec73f368/4x.webp',
     isAnimated: true,
     width: 128,
     height: 128,
@@ -110,8 +110,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "bruggium",
-    uri: "https://cdn.7tv.app/emote/6213a36821b4d5de1447209e/4x.webp",
+    name: 'bruggium',
+    uri: 'https://cdn.7tv.app/emote/6213a36821b4d5de1447209e/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -119,8 +119,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugStop",
-    uri: "https://cdn.7tv.app/emote/62d9bd92b33fe6c4fa9379bd/4x.webp",
+    name: 'brugStop',
+    uri: 'https://cdn.7tv.app/emote/62d9bd92b33fe6c4fa9379bd/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -128,8 +128,8 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugDance",
-    uri: "https://cdn.7tv.app/emote/61ea97f10aadf8d57da4ef0b/4x.webp",
+    name: 'brugDance',
+    uri: 'https://cdn.7tv.app/emote/61ea97f10aadf8d57da4ef0b/4x.webp',
     isAnimated: true,
     width: 128,
     height: 128,
@@ -137,20 +137,20 @@ export const BRUG_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "brugPot",
-    uri: "https://cdn.7tv.app/emote/62bda9f168a0391cc2397c91/4x.webp",
+    name: 'brugPot',
+    uri: 'https://cdn.7tv.app/emote/62bda9f168a0391cc2397c91/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
     x: 0,
     y: 0,
   },
-] as const;
+] as const
 
 export const PEPE_EMOTES: Emote[] = [
   {
-    name: "pepeJAM",
-    uri: "https://cdn.7tv.app/emote/6040a8bccf6746000db10348/4x.webp",
+    name: 'pepeJAM',
+    uri: 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/4x.webp',
     isAnimated: true,
     width: 132,
     height: 128,
@@ -158,8 +158,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "pepeLaugh",
-    uri: "https://cdn.7tv.app/emote/60afbb3952a13d1adb34b2a1/4x.webp",
+    name: 'pepeLaugh',
+    uri: 'https://cdn.7tv.app/emote/60afbb3952a13d1adb34b2a1/4x.webp',
     isAnimated: true,
     width: 128,
     height: 128,
@@ -167,8 +167,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Pipege",
-    uri: "https://cdn.7tv.app/emote/645a8091c3aa93c6583acbd0/4x.webp",
+    name: 'Pipege',
+    uri: 'https://cdn.7tv.app/emote/645a8091c3aa93c6583acbd0/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -176,8 +176,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Prayge",
-    uri: "https://cdn.7tv.app/emote/60aec2196cfcffe15f4e4f93/4x.webp",
+    name: 'Prayge',
+    uri: 'https://cdn.7tv.app/emote/60aec2196cfcffe15f4e4f93/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -185,8 +185,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "BOOBA",
-    uri: "https://cdn.7tv.app/emote/60aea4074b1ea4526d3c97a9/4x.webp",
+    name: 'BOOBA',
+    uri: 'https://cdn.7tv.app/emote/60aea4074b1ea4526d3c97a9/4x.webp',
     isAnimated: true,
     width: 128,
     height: 128,
@@ -194,8 +194,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Madge",
-    uri: "https://cdn.7tv.app/emote/649b89d33b4504dd621e53cc/4x.webp",
+    name: 'Madge',
+    uri: 'https://cdn.7tv.app/emote/649b89d33b4504dd621e53cc/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -203,8 +203,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "EZ",
-    uri: "https://cdn.7tv.app/emote/63071b80942ffb69e13d700f/4x.webp",
+    name: 'EZ',
+    uri: 'https://cdn.7tv.app/emote/63071b80942ffb69e13d700f/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -212,8 +212,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "MLADY",
-    uri: "https://cdn.7tv.app/emote/60af990d566c3e1fc9d26c93/4x.webp",
+    name: 'MLADY',
+    uri: 'https://cdn.7tv.app/emote/60af990d566c3e1fc9d26c93/4x.webp',
     isAnimated: true,
     width: 128,
     height: 128,
@@ -221,8 +221,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Bedge",
-    uri: "https://cdn.7tv.app/emote/60e8573f3c5b87437a3bac1f/4x.webp",
+    name: 'Bedge',
+    uri: 'https://cdn.7tv.app/emote/60e8573f3c5b87437a3bac1f/4x.webp',
     isAnimated: false,
     width: 136,
     height: 128,
@@ -230,8 +230,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Gladge",
-    uri: "https://cdn.7tv.app/emote/60aeb2da5174a619db6cd0e7/4x.webp",
+    name: 'Gladge',
+    uri: 'https://cdn.7tv.app/emote/60aeb2da5174a619db6cd0e7/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -239,8 +239,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Handshakege",
-    uri: "https://cdn.7tv.app/emote/614234ad0969108b6718fa15/4x.webp",
+    name: 'Handshakege',
+    uri: 'https://cdn.7tv.app/emote/614234ad0969108b6718fa15/4x.webp',
     isAnimated: false,
     width: 196,
     height: 128,
@@ -248,8 +248,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "Gayge",
-    uri: "https://cdn.7tv.app/emote/60c0cc44ff4047301e33bb96/4x.webp",
+    name: 'Gayge',
+    uri: 'https://cdn.7tv.app/emote/60c0cc44ff4047301e33bb96/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -257,8 +257,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "monkaS",
-    uri: "https://cdn.7tv.app/emote/60b885525d373afbd6d85264/4x.webp",
+    name: 'monkaS',
+    uri: 'https://cdn.7tv.app/emote/60b885525d373afbd6d85264/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -266,8 +266,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "PepoG",
-    uri: "https://cdn.7tv.app/emote/61b5bfef523b4785d7c20537/4x.webp",
+    name: 'PepoG',
+    uri: 'https://cdn.7tv.app/emote/61b5bfef523b4785d7c20537/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -275,8 +275,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "monkaHmm",
-    uri: "https://cdn.7tv.app/emote/60afb45412f90fadd65fb1a8/4x.webp",
+    name: 'monkaHmm',
+    uri: 'https://cdn.7tv.app/emote/60afb45412f90fadd65fb1a8/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -284,8 +284,8 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "monkaW",
-    uri: "https://cdn.7tv.app/emote/60aef3e4b74ea8ff797ae5ac/4x.webp",
+    name: 'monkaW',
+    uri: 'https://cdn.7tv.app/emote/60aef3e4b74ea8ff797ae5ac/4x.webp',
     isAnimated: false,
     width: 128,
     height: 128,
@@ -293,20 +293,20 @@ export const PEPE_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "PepoThink",
-    uri: "https://cdn.7tv.app/emote/60aef4557e8706b5727a802c/4x.webp",
+    name: 'PepoThink',
+    uri: 'https://cdn.7tv.app/emote/60aef4557e8706b5727a802c/4x.webp',
     isAnimated: false,
     width: 136,
     height: 128,
     x: 0,
     y: 0,
   },
-] as const;
+] as const
 
 const KNUR_EMOTES: Emote[] = [
   {
-    name: "fvlvtePrezes",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d127105f0e7a4079b399e4fb419dea14/default/light/4.0",
+    name: 'fvlvtePrezes',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d127105f0e7a4079b399e4fb419dea14/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -314,8 +314,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteStrazak",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ab6cc94e0c844e84b789fd48c53aec13/default/light/4.0",
+    name: 'fvlvteStrazak',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ab6cc94e0c844e84b789fd48c53aec13/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -323,8 +323,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteKnur",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_5b8ae3712f1341c5bd3e133ed88f72be/default/light/4.0",
+    name: 'fvlvteKnur',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_5b8ae3712f1341c5bd3e133ed88f72be/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -332,8 +332,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteWknurw",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_6edf7da7abef498eace4394ea7ef7725/default/light/4.0",
+    name: 'fvlvteWknurw',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_6edf7da7abef498eace4394ea7ef7725/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -341,8 +341,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvtePrayge",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_9e73e24d666541cca47b1023341aac69/default/light/4.0",
+    name: 'fvlvtePrayge',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_9e73e24d666541cca47b1023341aac69/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -350,8 +350,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteKnurfolud",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ca391b997df44fb3b6c1833df629a03c/default/light/4.0",
+    name: 'fvlvteKnurfolud',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ca391b997df44fb3b6c1833df629a03c/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -359,8 +359,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteKnuroholik",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_92e7522f36be4b4bb7ed1708ec2deed0/default/light/4.0",
+    name: 'fvlvteKnuroholik',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_92e7522f36be4b4bb7ed1708ec2deed0/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -368,8 +368,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteKnuruwka",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1df5cbde9cb94e7a8d8155530ae4726a/default/light/4.0",
+    name: 'fvlvteKnuruwka',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1df5cbde9cb94e7a8d8155530ae4726a/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -377,8 +377,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteSwagknur",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e59cfeb9983349d49364f0a504f21b0b/default/light/4.0",
+    name: 'fvlvteSwagknur',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e59cfeb9983349d49364f0a504f21b0b/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -386,8 +386,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteStop",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e3d1dfbd59af4e86ae01572b06a253c3/default/light/4.0",
+    name: 'fvlvteStop',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e3d1dfbd59af4e86ae01572b06a253c3/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -395,8 +395,8 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteSpadochroniarz",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_3268f05924a24e918b5ee52ca7b2ec58/default/light/4.0",
+    name: 'fvlvteSpadochroniarz',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_3268f05924a24e918b5ee52ca7b2ec58/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
@@ -404,18 +404,18 @@ const KNUR_EMOTES: Emote[] = [
     y: 0,
   },
   {
-    name: "fvlvteSojowalatte",
-    uri: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d0dc63ca7b2e4977bacfb5f46f2c3e88/default/light/4.0",
+    name: 'fvlvteSojowalatte',
+    uri: 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d0dc63ca7b2e4977bacfb5f46f2c3e88/default/light/4.0',
     isAnimated: false,
     width: 112,
     height: 112,
     x: 0,
     y: 0,
   },
-];
+]
 
 export const EMOTES = {
   PEPE: PEPE_EMOTES,
   BRUG: BRUG_EMOTES,
   KNUR: KNUR_EMOTES,
-};
+}

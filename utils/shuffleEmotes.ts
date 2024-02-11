@@ -1,26 +1,26 @@
-import { Emote, Rectangle } from "@/types";
-import { faker } from "@faker-js/faker";
-import { clone } from "ramda";
-import { LayoutRectangle, ScaledSize } from "react-native";
+import { Emote, Rectangle } from '@/types'
+import { faker } from '@faker-js/faker'
+import { clone } from 'ramda'
+import { LayoutRectangle, ScaledSize } from 'react-native'
 
 const isOverlapping = (first: Rectangle, second: Rectangle): boolean => {
   if (first.x > second.x + second.width || second.x > first.x + first.width) {
-    return false;
+    return false
   }
 
   if (first.y > second.y + second.height || second.y > first.y + first.height) {
-    return false;
+    return false
   }
 
-  return true;
-};
+  return true
+}
 
-const EMOTE_PADDING = 5;
+const EMOTE_PADDING = 5
 
-const SCALING_FACTOR = 2;
+const SCALING_FACTOR = 2
 const scale = (value: number) => {
-  return Math.round(value / SCALING_FACTOR);
-};
+  return Math.round(value / SCALING_FACTOR)
+}
 
 export const shuffleEmotes = ({
   emotes,
@@ -28,36 +28,30 @@ export const shuffleEmotes = ({
   obstacles,
   dimensions,
 }: {
-  emotes: Emote[];
-  layout: LayoutRectangle;
-  obstacles: Array<Rectangle>;
-  dimensions: ScaledSize;
+  emotes: Emote[]
+  layout: LayoutRectangle
+  obstacles: Array<Rectangle>
+  dimensions: ScaledSize
 }): Emote[] => {
-  const randomizedEmotes: Emote[] = [];
+  const randomizedEmotes: Emote[] = []
 
   for (let i = 0; i < emotes.length; i++) {
-    const emote = emotes[i];
+    const emote = emotes[i]
     if (!emote) {
-      throw new Error(`emote is undefined`);
+      throw new Error(`emote is undefined`)
     }
 
-    let isEmoteOverlappingWithShuffledEmotes = true;
+    let isEmoteOverlappingWithShuffledEmotes = true
     while (isEmoteOverlappingWithShuffledEmotes) {
-      isEmoteOverlappingWithShuffledEmotes = false;
+      isEmoteOverlappingWithShuffledEmotes = false
       const x = faker.number.int({
         min: 0 + EMOTE_PADDING,
-        max:
-          Math.round(layout.width) -
-          scale(emote.width) -
-          EMOTE_PADDING * dimensions.scale,
-      });
+        max: Math.round(layout.width) - scale(emote.width) - EMOTE_PADDING * dimensions.scale,
+      })
       const y = faker.number.int({
         min: 0 + EMOTE_PADDING,
-        max:
-          Math.round(layout.height) -
-          scale(emote.height) -
-          EMOTE_PADDING * dimensions.scale,
-      });
+        max: Math.round(layout.height) - scale(emote.height) - EMOTE_PADDING * dimensions.scale,
+      })
 
       randomizedEmotes.forEach((randomizedEmote) => {
         if (
@@ -76,9 +70,9 @@ export const shuffleEmotes = ({
             },
           )
         ) {
-          isEmoteOverlappingWithShuffledEmotes = true;
+          isEmoteOverlappingWithShuffledEmotes = true
         }
-      });
+      })
 
       obstacles.forEach((obstacle) => {
         if (
@@ -97,20 +91,20 @@ export const shuffleEmotes = ({
             },
           )
         ) {
-          isEmoteOverlappingWithShuffledEmotes = true;
+          isEmoteOverlappingWithShuffledEmotes = true
         }
-      });
+      })
 
       if (isEmoteOverlappingWithShuffledEmotes === false) {
-        const copy = clone(emote);
-        copy.x = x;
-        copy.y = y;
-        copy.width = scale(copy.width);
-        copy.height = scale(copy.height);
-        randomizedEmotes.push(copy);
+        const copy = clone(emote)
+        copy.x = x
+        copy.y = y
+        copy.width = scale(copy.width)
+        copy.height = scale(copy.height)
+        randomizedEmotes.push(copy)
       }
     }
   }
 
-  return randomizedEmotes;
-};
+  return randomizedEmotes
+}
