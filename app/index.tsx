@@ -4,7 +4,15 @@ import { Audio } from "expo-av";
 import { SoundObject } from "expo-av/build/Audio";
 import { Link, Stack } from "expo-router";
 import { Image } from "expo-image";
-import { Button, FlatList, Pressable, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+import { useStatistics } from "@/utils/useStatistics";
 
 faker.seed(1);
 
@@ -13,6 +21,8 @@ const maps = Object.keys(EMOTES).sort();
 let soundObject: SoundObject | null;
 
 export default function IndexScreen() {
+  const statistics = useStatistics();
+
   return (
     <>
       <Stack.Screen
@@ -93,6 +103,9 @@ export default function IndexScreen() {
           );
         }}
       ></FlatList>
+      <ScrollView>
+        <Text>{JSON.stringify(statistics.get(), null, 2)}</Text>
+      </ScrollView>
     </>
   );
 }

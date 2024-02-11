@@ -14,6 +14,7 @@ import { useSong } from "@/utils/useSong";
 import { shuffleEmotes } from "@/utils/shuffleEmotes";
 import { Emote } from "@/types";
 import { useRound } from "@/utils/useRound";
+import { useStatistics } from "@/utils/useStatistics";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
@@ -37,6 +38,7 @@ type Game = {
 
 export default function MapScreen() {
   const round = useRound();
+  const statistics = useStatistics();
   const [layout, setLayout] = useState<LayoutRectangle | null>(null);
   const localSearchParams = useLocalSearchParams();
   const dimensions = useWindowDimensions();
@@ -64,6 +66,11 @@ export default function MapScreen() {
         await song.stop();
         // TODO: Game ended here, save current round to statistics.
         console.log(JSON.stringify(round.state(), null, 2));
+        await statistics.saveRound({
+          round: round.state(),
+          // TODO: Handle correct map typings here.
+          map: localSearchParams.map as any,
+        });
       }
     })();
   }, [timeLeft]);

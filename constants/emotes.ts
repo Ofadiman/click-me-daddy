@@ -285,7 +285,7 @@ export const PEPE_EMOTES: Emote[] = [
   },
   {
     name: "monkaW",
-    uri: "https://7tv.app/emotes/60aef3e4b74ea8ff797ae5ac",
+    uri: "https://cdn.7tv.app/emote/60aef3e4b74ea8ff797ae5ac/4x.webp",
     isAnimated: false,
     width: 128,
     height: 128,
