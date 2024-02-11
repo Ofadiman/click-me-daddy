@@ -42,7 +42,6 @@ export default function MapScreen() {
   const dimensions = useWindowDimensions();
 
   const song = useSong();
-  const [score, setScore] = useState(0);
   const emoteSetRef = useRef(
     EMOTES[localSearchParams.map as keyof typeof EMOTES],
   );
@@ -100,7 +99,6 @@ export default function MapScreen() {
 
     await song.next();
     setGameState(GameState.Playing);
-    setScore(0);
     setTimeLeft(GAME_TIME_IN_SECONDS);
     setCurrentEmote(
       faker.helpers.arrayElement(
@@ -159,7 +157,7 @@ export default function MapScreen() {
     <Fragment>
       <Stack.Screen
         options={{
-          title: `Score: ${score}`,
+          title: `Score: ${round.score()}`,
         }}
       />
 
@@ -181,7 +179,6 @@ export default function MapScreen() {
                   round.recordEmotePress(emote);
 
                   // TODO: Score is probably not needed because round contains that data.
-                  setScore((prev) => prev + 1);
                   setCurrentEmote(
                     faker.helpers.arrayElement(
                       gameRef.current.emotes.map((emote) => emote.name),
@@ -229,7 +226,7 @@ export default function MapScreen() {
               <Card.Content>
                 {/* TODO: Replace LUL text to actual emote */}
                 <Text variant="titleLarge">You lost LUL</Text>
-                <Text variant="bodyMedium">Your score: {score}</Text>
+                <Text variant="bodyMedium">Your score: {round.score()}</Text>
               </Card.Content>
               <Card.Actions>
                 <Link href="/" asChild>

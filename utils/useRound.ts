@@ -21,6 +21,10 @@ export const useRound = () => {
     return roundRef.current;
   };
 
+  const score = () => {
+    return roundRef.current.clicks.length;
+  };
+
   return {
     new: () => {
       roundRef.current = {
@@ -30,6 +34,7 @@ export const useRound = () => {
         timestamp: new Date().toISOString(),
       };
     },
+    score,
     state,
     recordEmotePress,
     incrementTime,
