@@ -13,6 +13,7 @@ import { faker } from "@faker-js/faker";
 import { useSong } from "@/utils/useSong";
 import { shuffleEmotes } from "@/utils/shuffleEmotes";
 import { Emote } from "@/types";
+import { useRound } from "@/utils/useRound";
 
 const BUTTON_TOKENS = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
@@ -35,6 +36,7 @@ type Game = {
 };
 
 export default function MapScreen() {
+  const round = useRound();
   const [layout, setLayout] = useState<LayoutRectangle | null>(null);
   const localSearchParams = useLocalSearchParams();
   const dimensions = useWindowDimensions();
@@ -61,6 +63,8 @@ export default function MapScreen() {
 
         setGameState(GameState.Finished);
         await song.stop();
+        // TODO: Game ended here, save current round to statistics.
+        console.log(JSON.stringify(round.state(), null, 2));
       }
     })();
   }, [timeLeft]);
@@ -70,6 +74,7 @@ export default function MapScreen() {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      // TODO: Reset round to default state to prevent issues while loading the screen for the second time.
     };
   }, []);
 
@@ -78,6 +83,7 @@ export default function MapScreen() {
       throw new Error(`layout cannot be set to null when game starts`);
     }
 
+    round.new();
     gameRef.current.emotes = shuffleEmotes({
       emotes: emoteSetRef.current,
       layout: layout,
@@ -172,6 +178,9 @@ export default function MapScreen() {
             <Pressable
               onPress={() => {
                 if (emote.name === currentEmote) {
+                  round.recordEmotePress(emote);
+
+                  // TODO: Score is probably not needed because round contains that data.
                   setScore((prev) => prev + 1);
                   setCurrentEmote(
                     faker.helpers.arrayElement(
