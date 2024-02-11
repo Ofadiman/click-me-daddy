@@ -42,10 +42,17 @@ export const useStatistics = () => {
     return statistics
   }
 
+  const gamesPlayed = () => {
+    return Object.values(statistics).reduce((acc, current) => {
+      return acc + current.length
+    }, 0)
+  }
+
   const isEmpty = () => {
     return R.isEmpty(statistics)
   }
   return {
+    gamesPlayed,
     isEmpty,
     get,
     saveRound,

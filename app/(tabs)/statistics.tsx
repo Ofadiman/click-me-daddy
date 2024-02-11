@@ -87,7 +87,7 @@ export default function StatisticsScreen() {
       ) : (
         <ScrollView contentContainerStyle={{ padding: 10, gap: 10 }}>
           <Card
-            title="Zagraueś 69420 gier"
+            title={`Zagraueś ${statistics.gamesPlayed()} ${statistics.gamesPlayed() === 1 ? 'raz' : 'razy'}`}
             image={{
               height: 64,
               width: 64,
