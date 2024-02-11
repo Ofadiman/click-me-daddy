@@ -2,13 +2,24 @@ import { EMOTES } from '@/constants/emotes'
 import { faker } from '@faker-js/faker'
 import { Link, Tabs } from 'expo-router'
 import { Image } from 'expo-image'
-import { FlatList, Pressable, Text, View } from 'react-native'
+import { FlatList, Text, View, useWindowDimensions } from 'react-native'
+import { TouchableRipple } from 'react-native-paper'
+import { Fragment } from 'react'
 
 faker.seed(1)
 
-const maps = Object.keys(EMOTES).sort()
+const FLAT_LIST_PADDING = 10
+const FLAT_LIST_ITEM_HEIGHT = 150
+
+const MAP_TEASER_TEXT: Record<keyof typeof EMOTES, string> = {
+  BRUG: 'Niech Brug bendzie z tobom',
+  KNUR: 'Przyknurzymy coś?',
+  PEPE: 'Co Ty kurwa wiesz o pepegowaniu?',
+}
 
 export default function IndexScreen() {
+  const dimensions = useWindowDimensions()
+
   return (
     <>
       <Tabs.Screen
@@ -18,52 +29,81 @@ export default function IndexScreen() {
       />
 
       <FlatList
-        keyExtractor={(item) => item}
-        data={maps}
+        keyExtractor={([map]) => map}
+        data={Object.entries(EMOTES)}
         style={{
-          padding: 10,
+          padding: FLAT_LIST_PADDING,
         }}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        renderItem={({ item }) => {
+        renderItem={({ item: [map, emotes] }) => {
           return (
             <Link
-              key={item}
+              key={map}
               href={{
                 pathname: '/[map]',
                 params: {
-                  map: item,
+                  map: map,
                 },
-              }}
-              style={{
-                flex: 1,
               }}
               asChild
             >
-              <Pressable
+              <TouchableRipple
                 style={{
+                  backgroundColor: 'gray',
+                  height: FLAT_LIST_ITEM_HEIGHT,
+                  borderRadius: 10,
                   flexDirection: 'row',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
-                <Image
-                  source={{
-                    uri: 'https://cdn.7tv.app/emote/61fabc30b687024c3843b52d/4x.webp',
-                  }}
-                  style={{
-                    height: 128,
-                    width: 188,
-                  }}
-                />
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flex: 1,
-                  }}
-                >
-                  <Text>{item}</Text>
-                  <Text>{faker.company.catchPhrase()}</Text>
-                </View>
-              </Pressable>
+                <Fragment>
+                  {emotes.map((emote) => {
+                    const emoteWidth = Math.round(emote.width / 2)
+                    const emoteHeight = Math.round(emote.height / 2)
+                    return (
+                      <Image
+                        key={emote.name}
+                        style={{
+                          position: 'absolute',
+                          height: emoteHeight,
+                          width: emoteWidth,
+                          left: faker.number.int({
+                            min: 0,
+                            max: dimensions.width - FLAT_LIST_PADDING * 2 - emoteWidth,
+                          }),
+                          top: faker.number.int({
+                            min: 0,
+                            max: FLAT_LIST_ITEM_HEIGHT - emoteHeight,
+                          }),
+                        }}
+                        source={{
+                          uri: emote.uri,
+                          isAnimated: emote.isAnimated,
+                          height: emoteHeight,
+                          width: emoteWidth,
+                        }}
+                      />
+                    )
+                  })}
+                  <Text
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                      color: 'white',
+                      flex: 1,
+                      height: '100%',
+                      textAlign: 'center',
+                      textAlignVertical: 'center',
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {MAP_TEASER_TEXT[map]}
+                  </Text>
+                </Fragment>
+              </TouchableRipple>
             </Link>
           )
         }}
