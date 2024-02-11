@@ -10,6 +10,7 @@ import { shuffleEmotes } from '@/utils/shuffleEmotes'
 import { Emote } from '@/types'
 import { useRound } from '@/utils/useRound'
 import { useStatistics } from '@/utils/useStatistics'
+import { MaterialIcons } from '@expo/vector-icons'
 
 const BUTTON_TOKENS = ['!', '@', '#', '$', '%', '^', '&', '*']
 
@@ -29,6 +30,14 @@ enum GameState {
 
 type Game = {
   emotes: Emote[]
+}
+
+const BackToHome = () => {
+  return (
+    <Link href="/(tabs)/home" style={{ padding: 10, paddingLeft: 0 }}>
+      <MaterialIcons name="arrow-back" size={24} />
+    </Link>
+  )
 }
 
 export default function MapScreen() {
@@ -112,7 +121,8 @@ export default function MapScreen() {
       <Fragment>
         <Stack.Screen
           options={{
-            title: `Waste time clicking on ${localSearchParams.map}`,
+            headerTitle: `Klikaj w ${localSearchParams.map}`,
+            headerLeft: BackToHome,
           }}
         />
 
@@ -139,8 +149,11 @@ export default function MapScreen() {
             }}
             mode="contained"
           >
-            LETS GO{' '}
-            {Array.from({ length: 10 })
+            {Array.from({ length: 5 })
+              .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
+              .join('')}{' '}
+            JAZDA{' '}
+            {Array.from({ length: 5 })
               .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
               .join('')}
           </Button>
@@ -154,6 +167,7 @@ export default function MapScreen() {
       <Stack.Screen
         options={{
           title: `Score: ${round.score()}`,
+          headerLeft: BackToHome,
         }}
       />
 
@@ -219,19 +233,19 @@ export default function MapScreen() {
             >
               <Card.Content>
                 {/* TODO: Replace LUL text to actual emote */}
-                <Text variant="titleLarge">You lost LUL</Text>
-                <Text variant="bodyMedium">Your score: {round.score()}</Text>
+                <Text variant="titleLarge">Przegrałeś Kappa</Text>
+                <Text variant="bodyMedium">Punkty: {round.score()}</Text>
               </Card.Content>
               <Card.Actions>
-                <Link href="/" asChild>
-                  <Button>Maps</Button>
+                <Link href="/(tabs)/home" asChild>
+                  <Button>Mapki</Button>
                 </Link>
                 <Button
                   onPress={() => {
                     handleGameStart()
                   }}
                 >
-                  Play again
+                  Zagraj znowu
                 </Button>
               </Card.Actions>
             </Card>

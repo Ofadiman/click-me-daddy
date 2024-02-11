@@ -4,7 +4,15 @@ import { PaperProvider } from 'react-native-paper'
 export default function Layout() {
   return (
     <PaperProvider>
-      <Stack />
+      <Stack>
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="[map]" />
+      </Stack>
     </PaperProvider>
   )
 }
