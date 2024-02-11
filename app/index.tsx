@@ -1,4 +1,4 @@
-import { emotes } from "@/constants/emotes";
+import { EMOTES } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { Audio } from "expo-av";
 import { SoundObject } from "expo-av/build/Audio";
@@ -7,7 +7,7 @@ import { Button, FlatList, Image, Pressable, Text, View } from "react-native";
 
 faker.seed(1);
 
-const maps = Object.keys(emotes).sort();
+const maps = Object.keys(EMOTES).sort();
 
 let soundObject: SoundObject | null;
 

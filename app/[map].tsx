@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Avatar, Button, Card, Modal, Portal, Text } from "react-native-paper";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { emotes } from "@/constants/emotes";
+import { EMOTES } from "@/constants/emotes";
 import { faker } from "@faker-js/faker";
 import { useSong } from "@/utils/useSong";
 import { shuffleEmotes } from "@/utils/shuffleEmotes";
@@ -42,10 +42,10 @@ export default function MapScreen() {
   const song = useSong();
   const [score, setScore] = useState(0);
   const emoteSetRef = useRef(
-    emotes[localSearchParams.map as keyof typeof emotes],
+    EMOTES[localSearchParams.map as keyof typeof EMOTES],
   );
   const gameRef = useRef<Game>({
-    emotes: emotes[localSearchParams.map as keyof typeof emotes],
+    emotes: EMOTES[localSearchParams.map as keyof typeof EMOTES],
   });
   const [currentEmote, setCurrentEmote] = useState<string>("");
   const [gameState, setGameState] = useState<GameState>(GameState.Initial);
