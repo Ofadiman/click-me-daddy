@@ -3,7 +3,8 @@ import { faker } from "@faker-js/faker";
 import { Audio } from "expo-av";
 import { SoundObject } from "expo-av/build/Audio";
 import { Link, Stack } from "expo-router";
-import { Button, FlatList, Image, Pressable, Text, View } from "react-native";
+import { Image } from "expo-image";
+import { Button, FlatList, Pressable, Text, View } from "react-native";
 
 faker.seed(1);
 
