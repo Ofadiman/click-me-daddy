@@ -2,6 +2,7 @@ import { Round, Statistics } from '@/types'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { clone } from 'ramda'
 import { useEffect, useState } from 'react'
+import R from 'ramda'
 
 const ASYNC_STORAGE_STATISTICS_KEY = 'statistics'
 
@@ -35,14 +36,17 @@ export const useStatistics = () => {
 
     await AsyncStorage.setItem(ASYNC_STORAGE_STATISTICS_KEY, JSON.stringify(statistics))
     setStatistics(newStatistics)
-    console.log(`round saved`)
   }
 
   const get = () => {
     return statistics
   }
 
+  const isEmpty = () => {
+    return R.isEmpty(statistics)
+  }
   return {
+    isEmpty,
     get,
     saveRound,
   }
