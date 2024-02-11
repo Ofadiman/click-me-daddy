@@ -1,6 +1,5 @@
 import { Round, Statistics } from '@/types'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { clone } from 'ramda'
 import { useEffect, useState } from 'react'
 import R from 'ramda'
 
@@ -24,7 +23,7 @@ export const useStatistics = () => {
   }, [])
 
   const saveRound = async (args: { map: string; round: Round }) => {
-    const newStatistics = clone(statistics)
+    const newStatistics = R.clone(statistics)
 
     const map = newStatistics[args.map]
     const mapAlreadyPlayed = map !== undefined
@@ -34,7 +33,7 @@ export const useStatistics = () => {
       newStatistics[args.map] = [args.round]
     }
 
-    await AsyncStorage.setItem(ASYNC_STORAGE_STATISTICS_KEY, JSON.stringify(statistics))
+    await AsyncStorage.setItem(ASYNC_STORAGE_STATISTICS_KEY, JSON.stringify(newStatistics))
     setStatistics(newStatistics)
   }
 
@@ -48,10 +47,21 @@ export const useStatistics = () => {
     }, 0)
   }
 
+  const secondsPlayed = () => {
+    return Object.values(statistics).reduce((acc, map) => {
+      const time = map.reduce((roundsAccumulator, round) => {
+        return roundsAccumulator + round.time
+      }, 0)
+
+      return acc + time
+    }, 0)
+  }
+
   const isEmpty = () => {
     return R.isEmpty(statistics)
   }
   return {
+    secondsPlayed,
     gamesPlayed,
     isEmpty,
     get,

@@ -58,7 +58,7 @@ export default function MapScreen() {
   const [timeLeft, setTimeLeft] = useState(GAME_TIME_IN_SECONDS)
 
   useEffect(() => {
-    ;(async () => {
+    void (async () => {
       if (timeLeft === 0) {
         if (intervalRef.current) {
           clearInterval(intervalRef.current)
@@ -66,8 +66,6 @@ export default function MapScreen() {
 
         setGameState(GameState.Finished)
         await song.stop()
-        // TODO: Game ended here, save current round to statistics.
-        console.log(JSON.stringify(round.state(), null, 2))
         await statistics.saveRound({
           round: round.state(),
           // TODO: Handle correct map typings here.
@@ -112,6 +110,7 @@ export default function MapScreen() {
     setCurrentEmote(faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)))
 
     intervalRef.current = setInterval(() => {
+      round.incrementTime()
       setTimeLeft((prev) => prev - 1)
     }, ONE_SECOND)
   }
@@ -187,8 +186,6 @@ export default function MapScreen() {
               onPress={() => {
                 if (emote.name === currentEmote) {
                   round.recordEmotePress(emote)
-
-                  // TODO: Score is probably not needed because round contains that data.
                   setCurrentEmote(
                     faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)),
                   )

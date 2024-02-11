@@ -96,7 +96,7 @@ export default function StatisticsScreen() {
             }}
           />
           <Card
-            title="Zmarnowaueś 1616 minut rzycia na klikaniu"
+            title={`Zmarnowaueś ${statistics.secondsPlayed()} sekund rzycia w tej grze`}
             image={{
               height: 64,
               width: 70,
