@@ -25,8 +25,6 @@ const INITIAL_SCREEN_TITLES: Record<keyof typeof EMOTES, string> = {
   PEPE: 'Po prostu rzaba',
 }
 
-const BUTTON_TOKENS = ['!', '@', '#', '$', '%', '^', '&', '*']
-
 const TIMER_WIDTH = 64
 const TIMER_HEIGHT = 64
 const TIMER_OFFSET_BOTTOM = 20
@@ -162,14 +160,38 @@ export default function MapScreen() {
               handleGameStart()
             }}
             mode="contained"
+            contentStyle={{
+              height: 50,
+            }}
           >
-            {Array.from({ length: 5 })
-              .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
-              .join('')}{' '}
-            JAZDA{' '}
-            {Array.from({ length: 5 })
-              .map(() => faker.helpers.arrayElement(BUTTON_TOKENS))
-              .join('')}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              <Image
+                source={{
+                  uri: 'https://cdn.7tv.app/emote/648ce03eb3fdb6379f1dff8e/4x.webp',
+                  width: 24,
+                  height: 24,
+                  isAnimated: false,
+                }}
+                style={{ width: 24, height: 24 }}
+              />
+              <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>JAZDA</Text>
+              <Image
+                source={{
+                  uri: 'https://cdn.7tv.app/emote/648ce03eb3fdb6379f1dff8e/4x.webp',
+                  width: 24,
+                  height: 24,
+                  isAnimated: false,
+                }}
+                style={{ width: 24, height: 24, transform: [{ rotateY: '180deg' }] }}
+              />
+            </View>
           </Button>
         </View>
       </Fragment>
