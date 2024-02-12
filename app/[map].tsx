@@ -1,11 +1,5 @@
 import { Link, Stack, useLocalSearchParams } from 'expo-router'
-import {
-  LayoutRectangle,
-  Pressable,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from 'react-native'
+import { LayoutRectangle, TouchableOpacity, View, useWindowDimensions } from 'react-native'
 import { Avatar, Button, Card, Modal, Portal, Text } from 'react-native-paper'
 import { Image } from 'expo-image'
 import { Fragment, useEffect, useRef, useState } from 'react'
@@ -219,7 +213,7 @@ export default function MapScreen() {
       <View style={{ position: 'relative', flex: 1 }}>
         {gameRef.current.emotes.map((emote) => {
           return (
-            <Pressable
+            <TouchableOpacity
               onPress={() => {
                 if (emote.name === currentEmote) {
                   const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
@@ -248,7 +242,7 @@ export default function MapScreen() {
                   width: emote.width,
                 }}
               />
-            </Pressable>
+            </TouchableOpacity>
           )
         })}
 
