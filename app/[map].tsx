@@ -13,6 +13,12 @@ import { useStatistics } from '@/utils/useStatistics'
 import { MaterialIcons } from '@expo/vector-icons'
 import R from 'ramda'
 
+const INITIAL_SCREEN_TITLES: Record<keyof typeof EMOTES, string> = {
+  BRUG: 'Czar... ujący menszczyzna here',
+  KNUR: 'Ale Knura to Ty szanój',
+  PEPE: 'Po prostu rzaba',
+}
+
 const BUTTON_TOKENS = ['!', '@', '#', '$', '%', '^', '&', '*']
 
 const TIMER_WIDTH = 64
@@ -121,7 +127,7 @@ export default function MapScreen() {
       <Fragment>
         <Stack.Screen
           options={{
-            headerTitle: `Klikaj w ${localSearchParams.map}`,
+            headerTitle: INITIAL_SCREEN_TITLES[localSearchParams.map as keyof typeof EMOTES],
             headerLeft: BackToHome,
           }}
         />
