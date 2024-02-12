@@ -21,7 +21,7 @@ export const useRound = () => {
   }
 
   const score = () => {
-    return roundRef.current.clicks.length
+    return roundRef.current.clicks.filter((click) => click.isMissclick === false).length
   }
 
   return {
