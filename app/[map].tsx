@@ -1,5 +1,11 @@
 import { Link, Stack, useLocalSearchParams } from 'expo-router'
-import { LayoutRectangle, Pressable, View, useWindowDimensions } from 'react-native'
+import {
+  LayoutRectangle,
+  Pressable,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from 'react-native'
 import { Avatar, Button, Card, Modal, Portal, Text } from 'react-native-paper'
 import { Image } from 'expo-image'
 import { Fragment, useEffect, useRef, useState } from 'react'
@@ -41,8 +47,10 @@ type Game = {
 
 const BackToHome = () => {
   return (
-    <Link href="/(tabs)/home" style={{ padding: 10, paddingLeft: 0 }}>
-      <MaterialIcons name="arrow-back" size={24} />
+    <Link href="/(tabs)/home" style={{ padding: 10, paddingLeft: 0 }} asChild>
+      <TouchableOpacity>
+        <MaterialIcons name="arrow-back" size={24} />
+      </TouchableOpacity>
     </Link>
   )
 }
