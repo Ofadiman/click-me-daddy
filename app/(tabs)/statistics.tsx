@@ -114,12 +114,12 @@ export default function StatisticsScreen() {
             }}
           />
           <Card
-            title="Tfoja ulubiona emotka to Pepega"
+            title={`Tfoja ulubiona emotka to ${statistics.favouriteEmote().name}`}
             image={{
-              height: 64,
-              width: 64,
-              isAnimated: false,
-              uri: 'https://cdn.7tv.app/emote/603eace1115b55000d7282db/4x.webp',
+              height: Math.round(statistics.favouriteEmote().height / 2),
+              width: Math.round(statistics.favouriteEmote().width / 2),
+              isAnimated: statistics.favouriteEmote().isAnimated,
+              uri: statistics.favouriteEmote().uri,
             }}
           />
           <Card

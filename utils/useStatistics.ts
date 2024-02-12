@@ -1,7 +1,8 @@
-import { Round, Statistics } from '@/types'
+import { Emote, Round, Statistics } from '@/types'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useEffect, useState } from 'react'
 import R from 'ramda'
+import { EMOTES } from '@/constants/emotes'
 
 const ASYNC_STORAGE_STATISTICS_KEY = 'statistics'
 
@@ -80,7 +81,37 @@ export const useStatistics = () => {
     }, 0)
   }
 
+  const favouriteEmote = (): Emote => {
+    const emotes: Record<string, number> = {}
+
+    Object.values(statistics).forEach((rounds) => {
+      rounds.forEach((round) => {
+        round.clicks.forEach((click) => {
+          if (emotes[click.name]) {
+            emotes[click.name]++
+          } else {
+            emotes[click.name] = 1
+          }
+        })
+      })
+    })
+
+    const list = Object.entries(emotes)
+    list.sort((left, right) => {
+      return left[1] - right[1]
+    })
+    const emote = list[list.length - 1]
+
+    const found = [...EMOTES.BRUG, ...EMOTES.PEPE, ...EMOTES.KNUR].find((e) => e.name === emote![0])
+    if (!found) {
+      throw new Error(`favourite emote not found`)
+    }
+
+    return found
+  }
+
   return {
+    favouriteEmote,
     emotesPressed,
     secondsPlayed,
     gamesPlayed,
