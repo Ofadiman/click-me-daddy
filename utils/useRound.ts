@@ -1,15 +1,14 @@
-import { Emote, Round } from '@/types'
+import { Round, RoundEmote } from '@/types'
 import { useRef } from 'react'
 
 export const useRound = () => {
   const roundRef = useRef<Round>({
     time: 0,
     clicks: [],
-    missclicks: 0,
     timestamp: new Date().toISOString(),
   })
 
-  const recordEmotePress = (emote: Emote) => {
+  const recordEmotePress = (emote: RoundEmote) => {
     roundRef.current.clicks.push(emote)
   }
 
@@ -30,7 +29,6 @@ export const useRound = () => {
       roundRef.current = {
         time: 0,
         clicks: [],
-        missclicks: 0,
         timestamp: new Date().toISOString(),
       }
     },

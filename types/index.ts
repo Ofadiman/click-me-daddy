@@ -11,11 +11,14 @@ export type Emote = {
   isAnimated: boolean
 } & Rectangle
 
+export type RoundEmote = {
+  isMissclick: boolean
+} & Emote
+
 export type Round = {
   timestamp: string
-  clicks: Emote[]
+  clicks: Array<RoundEmote>
   time: number
-  missclicks: number
 }
 
 export type Statistics = Record<string, Round[]>

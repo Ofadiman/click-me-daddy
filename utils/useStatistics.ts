@@ -60,7 +60,28 @@ export const useStatistics = () => {
   const isEmpty = () => {
     return R.isEmpty(statistics)
   }
+
+  const emotesPressed = () => {
+    return Object.values(statistics).reduce((acc1, rounds) => {
+      return (
+        acc1 +
+        rounds.reduce((acc2, round) => {
+          const roundSum = round.clicks.reduce((acc3, click) => {
+            if (click.isMissclick) {
+              return acc3
+            }
+
+            return acc3 + 1
+          }, 0)
+
+          return acc2 + roundSum
+        }, 0)
+      )
+    }, 0)
+  }
+
   return {
+    emotesPressed,
     secondsPlayed,
     gamesPlayed,
     isEmpty,

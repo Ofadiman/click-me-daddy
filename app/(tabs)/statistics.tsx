@@ -105,7 +105,7 @@ export default function StatisticsScreen() {
             }}
           />
           <Card
-            title="Pomyślnie dotknołeś 420 emotek"
+            title={`Pomyślnie dotknołeś ${statistics.emotesPressed()} emotek`}
             image={{
               height: 64,
               width: 64,

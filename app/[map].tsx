@@ -11,6 +11,7 @@ import { Emote } from '@/types'
 import { useRound } from '@/utils/useRound'
 import { useStatistics } from '@/utils/useStatistics'
 import { MaterialIcons } from '@expo/vector-icons'
+import R from 'ramda'
 
 const BUTTON_TOKENS = ['!', '@', '#', '$', '%', '^', '&', '*']
 
@@ -185,10 +186,14 @@ export default function MapScreen() {
             <Pressable
               onPress={() => {
                 if (emote.name === currentEmote) {
-                  round.recordEmotePress(emote)
+                  const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
+                  round.recordEmotePress(updated)
                   setCurrentEmote(
                     faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)),
                   )
+                } else {
+                  const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
+                  round.recordEmotePress(updated)
                 }
               }}
               key={emote.name}
