@@ -1,5 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
+import { TouchableOpacity } from 'react-native'
 
 export default function Layout() {
   return (
@@ -8,6 +9,7 @@ export default function Layout() {
         name="home"
         options={{
           tabBarShowLabel: false,
+          tabBarButton: (props) => <TouchableOpacity {...props} />,
           tabBarIcon: () => <MaterialIcons name="map" size={24} />,
         }}
       />
@@ -15,6 +17,7 @@ export default function Layout() {
         name="statistics"
         options={{
           tabBarShowLabel: false,
+          tabBarButton: (props) => <TouchableOpacity {...props} />,
           tabBarIcon: () => <MaterialIcons name="calculate" size={24} />,
         }}
       />
