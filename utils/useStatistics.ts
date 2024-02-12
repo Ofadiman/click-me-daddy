@@ -110,7 +110,24 @@ export const useStatistics = () => {
     return found
   }
 
+  const missclicks = (): number => {
+    let missclicks = 0
+    Object.values(statistics).forEach((rounds) => {
+      rounds.forEach((round) => {
+        round.clicks.forEach((click) => {
+          if (click.isMissclick) {
+            missclicks++
+          }
+        })
+      })
+    })
+
+    return missclicks
+  }
+
+  // TODO: WTF, useMemo for statistics and perform calculations once.
   return {
+    missclicks,
     favouriteEmote,
     emotesPressed,
     secondsPlayed,

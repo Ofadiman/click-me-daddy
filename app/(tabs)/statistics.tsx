@@ -123,7 +123,7 @@ export default function StatisticsScreen() {
             }}
           />
           <Card
-            title="Zajebaueś missklika 69 razy"
+            title={`Zajebaueś missklika ${statistics.missclicks()} razy`}
             image={{
               height: 64,
               width: 64,
