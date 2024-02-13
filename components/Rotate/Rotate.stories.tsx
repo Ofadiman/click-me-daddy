@@ -1,14 +1,16 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { Flip } from './Flip'
+import { Rotate } from './Rotate'
 import { Text } from 'react-native'
 
 export default {
-  title: 'Flip',
-  component: Flip,
-} satisfies Meta<typeof Flip>
+  title: 'Rotate',
+  component: Rotate,
+} satisfies Meta<typeof Rotate>
 
-export const Primary: StoryObj<typeof Flip> = {
+export const Primary: StoryObj<typeof Rotate> = {
   args: {
+    shouldAnimate: true,
+    animationDuration: 3_000,
     children: (
       <Text
         style={{
@@ -16,14 +18,12 @@ export const Primary: StoryObj<typeof Flip> = {
           width: 120,
           backgroundColor: '#b58df1',
           borderRadius: 20,
-          textAlignVertical: 'center',
           textAlign: 'center',
+          textAlignVertical: 'center',
         }}
       >
         Animating
       </Text>
     ),
-    shouldAnimate: true,
-    animationDuration: 3_000,
   },
 }

@@ -7,13 +7,13 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 
-export const Flip = (
+export const Rotate = (
   props: PropsWithChildren<{ shouldAnimate: boolean; animationDuration: number }>,
 ) => {
-  const deg = useSharedValue(0)
+  const deg = useSharedValue(180)
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ rotateY: `${deg.value}deg` }],
+    transform: [{ rotateZ: `${deg.value}deg` }],
   }))
 
   useEffect(() => {
