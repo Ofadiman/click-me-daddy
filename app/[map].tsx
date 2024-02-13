@@ -21,6 +21,8 @@ import { MaterialIcons } from '@expo/vector-icons'
 import R from 'ramda'
 import { Rotate } from '@/components/Rotate/Rotate'
 import { Flip } from '@/components/Flip/Flip'
+import { Audio } from 'expo-av'
+import { SoundObject } from 'expo-av/build/Audio'
 
 const INITIAL_SCREEN_TITLES: Record<keyof typeof EMOTES, string> = {
   BRUG: 'Czar... ujący menszczyzna here',
@@ -63,6 +65,7 @@ export default function MapScreen() {
   const localSearchParams = useLocalSearchParams()
   const dimensions = useWindowDimensions()
 
+  const uwuRef = useRef<SoundObject | null>(null)
   const song = useSong()
   const emoteSetRef = useRef(EMOTES[localSearchParams.map as keyof typeof EMOTES])
   const gameRef = useRef<Game>({
@@ -72,6 +75,16 @@ export default function MapScreen() {
   const [gameState, setGameState] = useState<GameState>(GameState.Initial)
   const intervalRef = useRef<null | NodeJS.Timeout>(null)
   const [timeLeft, setTimeLeft] = useState(GAME_TIME_IN_SECONDS)
+
+  useEffect(() => {
+    Audio.Sound.createAsync(require('../assets/music/uwu.mp3'))
+      .then((sound) => {
+        uwuRef.current = sound
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
 
   useEffect(() => {
     void (async () => {
@@ -221,13 +234,16 @@ export default function MapScreen() {
 
       <View style={{ position: 'relative', flex: 1 }}>
         {gameRef.current.emotes.map((emote, index) => {
-          const handlePress = () => {
+          const handlePress = async () => {
             if (emote.name === currentEmote) {
               const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
               round.recordEmotePress(updated)
               setCurrentEmote(
                 faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)),
               )
+              if (uwuRef.current) {
+                await uwuRef.current.sound.replayAsync()
+              }
             } else {
               const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
               round.recordEmotePress(updated)
