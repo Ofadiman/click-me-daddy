@@ -81,7 +81,7 @@ export const useStatistics = () => {
     }, 0)
   }
 
-  const favouriteEmote = (): Emote => {
+  const favouriteEmote = (): Emote | null => {
     const emotes: Record<string, number> = {}
 
     Object.values(statistics).forEach((rounds) => {
@@ -101,10 +101,13 @@ export const useStatistics = () => {
       return left[1] - right[1]
     })
     const emote = list[list.length - 1]
+    if (!emote) {
+      return null
+    }
 
     const found = [...EMOTES.BRUG, ...EMOTES.PEPE, ...EMOTES.KNUR].find((e) => e.name === emote![0])
     if (!found) {
-      throw new Error(`favourite emote not found`)
+      return null
     }
 
     return found

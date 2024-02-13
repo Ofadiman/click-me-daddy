@@ -63,6 +63,8 @@ const Card = (props: {
 export default function StatisticsScreen() {
   const statistics = useStatistics()
 
+  const favoriteEmote = statistics.favouriteEmote()
+
   return (
     <Fragment>
       <Tabs.Screen
@@ -113,15 +115,18 @@ export default function StatisticsScreen() {
               uri: 'https://cdn.7tv.app/emote/60e2fd9378cfe95e2d76eb34/4x.webp',
             }}
           />
-          <Card
-            title={`Tfoja ulubiona emotka to ${statistics.favouriteEmote().name}`}
-            image={{
-              height: Math.round(statistics.favouriteEmote().height / 2),
-              width: Math.round(statistics.favouriteEmote().width / 2),
-              isAnimated: statistics.favouriteEmote().isAnimated,
-              uri: statistics.favouriteEmote().uri,
-            }}
-          />
+          {favoriteEmote === null ? null : (
+            <Card
+              title={`Tfoja ulubiona emotka to ${favoriteEmote.name}`}
+              image={{
+                height: Math.round(favoriteEmote.height / 2),
+                width: Math.round(favoriteEmote.width / 2),
+                isAnimated: favoriteEmote.isAnimated,
+                uri: favoriteEmote.uri,
+              }}
+            />
+          )}
+
           <Card
             title={`Zajebaueś missklika ${statistics.missclicks()} razy`}
             image={{
