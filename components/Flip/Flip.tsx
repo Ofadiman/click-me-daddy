@@ -1,4 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
+import { StyleProp, ViewStyle } from 'react-native'
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -8,7 +9,11 @@ import Animated, {
 } from 'react-native-reanimated'
 
 export const Flip = (
-  props: PropsWithChildren<{ shouldAnimate: boolean; animationDuration: number }>,
+  props: PropsWithChildren<{
+    shouldAnimate: boolean
+    animationDuration: number
+    style: StyleProp<ViewStyle>
+  }>,
 ) => {
   const deg = useSharedValue(0)
 
@@ -28,5 +33,5 @@ export const Flip = (
     }
   }, [props.shouldAnimate, props.animationDuration])
 
-  return <Animated.View style={[animatedStyles]}>{props.children}</Animated.View>
+  return <Animated.View style={[props.style, animatedStyles]}>{props.children}</Animated.View>
 }

@@ -13,6 +13,7 @@ import { useStatistics } from '@/utils/useStatistics'
 import { MaterialIcons } from '@expo/vector-icons'
 import R from 'ramda'
 import { Rotate } from '@/components/Rotate/Rotate'
+import { Flip } from '@/components/Flip/Flip'
 
 const INITIAL_SCREEN_TITLES: Record<keyof typeof EMOTES, string> = {
   BRUG: 'Czar... ujący menszczyzna here',
@@ -213,7 +214,7 @@ export default function MapScreen() {
 
       <View style={{ position: 'relative', flex: 1 }}>
         {gameRef.current.emotes.map((emote, index) => {
-          const mod = index % 2
+          const mod = index % 3
           if (mod === 0) {
             return (
               <Rotate
@@ -255,6 +256,50 @@ export default function MapScreen() {
                   />
                 </TouchableOpacity>
               </Rotate>
+            )
+          }
+
+          if (mod === 1) {
+            return (
+              <Flip
+                key={emote.name}
+                shouldAnimate={
+                  timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3) * 2
+                }
+                animationDuration={3_000}
+                style={{
+                  left: emote.x,
+                  top: emote.y,
+                  position: 'absolute',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => {
+                    if (emote.name === currentEmote) {
+                      const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
+                      round.recordEmotePress(updated)
+                      setCurrentEmote(
+                        faker.helpers.arrayElement(
+                          gameRef.current.emotes.map((emote) => emote.name),
+                        ),
+                      )
+                    } else {
+                      const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
+                      round.recordEmotePress(updated)
+                    }
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri: emote.uri,
+                    }}
+                    style={{
+                      height: emote.height,
+                      width: emote.width,
+                    }}
+                  />
+                </TouchableOpacity>
+              </Flip>
             )
           }
 
