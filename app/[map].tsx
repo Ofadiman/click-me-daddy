@@ -12,6 +12,7 @@ import { useRound } from '@/utils/useRound'
 import { useStatistics } from '@/utils/useStatistics'
 import { MaterialIcons } from '@expo/vector-icons'
 import R from 'ramda'
+import { Rotate } from '@/components/Rotate/Rotate'
 
 const INITIAL_SCREEN_TITLES: Record<keyof typeof EMOTES, string> = {
   BRUG: 'Czar... ujący menszczyzna here',
@@ -25,7 +26,7 @@ const TIMER_OFFSET_BOTTOM = 20
 const TIMER_OFFSET_RIGHT = 20
 
 const ONE_SECOND = 1000
-const GAME_TIME_IN_SECONDS = 10
+const GAME_TIME_IN_SECONDS = 30
 
 enum GameState {
   Initial = 'initial',
@@ -211,9 +212,60 @@ export default function MapScreen() {
       </View>
 
       <View style={{ position: 'relative', flex: 1 }}>
-        {gameRef.current.emotes.map((emote) => {
+        {gameRef.current.emotes.map((emote, index) => {
+          const mod = index % 2
+          if (mod === 0) {
+            return (
+              <Rotate
+                key={emote.name}
+                shouldAnimate={
+                  timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3)
+                }
+                animationDuration={3_000}
+                style={{
+                  left: emote.x,
+                  top: emote.y,
+                  position: 'absolute',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => {
+                    if (emote.name === currentEmote) {
+                      const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
+                      round.recordEmotePress(updated)
+                      setCurrentEmote(
+                        faker.helpers.arrayElement(
+                          gameRef.current.emotes.map((emote) => emote.name),
+                        ),
+                      )
+                    } else {
+                      const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
+                      round.recordEmotePress(updated)
+                    }
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri: emote.uri,
+                    }}
+                    style={{
+                      height: emote.height,
+                      width: emote.width,
+                    }}
+                  />
+                </TouchableOpacity>
+              </Rotate>
+            )
+          }
+
           return (
             <TouchableOpacity
+              key={emote.name}
+              style={{
+                left: emote.x,
+                top: emote.y,
+                position: 'absolute',
+              }}
               onPress={() => {
                 if (emote.name === currentEmote) {
                   const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
@@ -225,12 +277,6 @@ export default function MapScreen() {
                   const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
                   round.recordEmotePress(updated)
                 }
-              }}
-              key={emote.name}
-              style={{
-                left: emote.x,
-                top: emote.y,
-                position: 'absolute',
               }}
             >
               <Image
