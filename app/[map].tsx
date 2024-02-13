@@ -27,7 +27,7 @@ const TIMER_OFFSET_BOTTOM = 20
 const TIMER_OFFSET_RIGHT = 20
 
 const ONE_SECOND = 1000
-const GAME_TIME_IN_SECONDS = 30
+const GAME_TIME_IN_SECONDS = 10
 
 enum GameState {
   Initial = 'initial',
@@ -220,6 +220,7 @@ export default function MapScreen() {
               <Rotate
                 key={emote.name}
                 shouldAnimate={
+                  timeLeft > 0 &&
                   timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3)
                 }
                 animationDuration={3_000}
@@ -264,6 +265,7 @@ export default function MapScreen() {
               <Flip
                 key={emote.name}
                 shouldAnimate={
+                  timeLeft > 0 &&
                   timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3) * 2
                 }
                 animationDuration={3_000}

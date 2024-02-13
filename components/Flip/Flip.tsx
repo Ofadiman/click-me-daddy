@@ -30,6 +30,11 @@ export const Flip = (
         }),
         Number.POSITIVE_INFINITY,
       )
+    } else {
+      deg.value = withTiming(0, {
+        duration: props.animationDuration,
+        easing: Easing.inOut(Easing.quad),
+      })
     }
   }, [props.shouldAnimate, props.animationDuration])
 
