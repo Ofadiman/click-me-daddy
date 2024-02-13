@@ -1,7 +1,14 @@
 import { Link, Stack, useLocalSearchParams } from 'expo-router'
-import { LayoutRectangle, TouchableOpacity, View, useWindowDimensions } from 'react-native'
+import {
+  LayoutRectangle,
+  StyleProp,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+  useWindowDimensions,
+} from 'react-native'
 import { Avatar, Button, Card, Modal, Portal, Text } from 'react-native-paper'
-import { Image } from 'expo-image'
+import { Image, ImageStyle } from 'expo-image'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { EMOTES } from '@/constants/emotes'
 import { faker } from '@faker-js/faker'
@@ -214,6 +221,28 @@ export default function MapScreen() {
 
       <View style={{ position: 'relative', flex: 1 }}>
         {gameRef.current.emotes.map((emote, index) => {
+          const handlePress = () => {
+            if (emote.name === currentEmote) {
+              const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
+              round.recordEmotePress(updated)
+              setCurrentEmote(
+                faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)),
+              )
+            } else {
+              const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
+              round.recordEmotePress(updated)
+            }
+          }
+          const rootStyle: StyleProp<ViewStyle> = {
+            left: emote.x,
+            top: emote.y,
+            position: 'absolute',
+          }
+          const imageStyle: StyleProp<ImageStyle> = {
+            height: emote.height,
+            width: emote.width,
+          }
+
           const mod = index % 3
           if (mod === 0) {
             return (
@@ -224,36 +253,14 @@ export default function MapScreen() {
                   timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3)
                 }
                 animationDuration={3_000}
-                style={{
-                  left: emote.x,
-                  top: emote.y,
-                  position: 'absolute',
-                }}
+                style={rootStyle}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    if (emote.name === currentEmote) {
-                      const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
-                      round.recordEmotePress(updated)
-                      setCurrentEmote(
-                        faker.helpers.arrayElement(
-                          gameRef.current.emotes.map((emote) => emote.name),
-                        ),
-                      )
-                    } else {
-                      const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
-                      round.recordEmotePress(updated)
-                    }
-                  }}
-                >
+                <TouchableOpacity onPress={handlePress}>
                   <Image
                     source={{
                       uri: emote.uri,
                     }}
-                    style={{
-                      height: emote.height,
-                      width: emote.width,
-                    }}
+                    style={imageStyle}
                   />
                 </TouchableOpacity>
               </Rotate>
@@ -269,36 +276,14 @@ export default function MapScreen() {
                   timeLeft < GAME_TIME_IN_SECONDS - Math.round(GAME_TIME_IN_SECONDS / 3) * 2
                 }
                 animationDuration={3_000}
-                style={{
-                  left: emote.x,
-                  top: emote.y,
-                  position: 'absolute',
-                }}
+                style={rootStyle}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    if (emote.name === currentEmote) {
-                      const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
-                      round.recordEmotePress(updated)
-                      setCurrentEmote(
-                        faker.helpers.arrayElement(
-                          gameRef.current.emotes.map((emote) => emote.name),
-                        ),
-                      )
-                    } else {
-                      const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
-                      round.recordEmotePress(updated)
-                    }
-                  }}
-                >
+                <TouchableOpacity onPress={handlePress}>
                   <Image
                     source={{
                       uri: emote.uri,
                     }}
-                    style={{
-                      height: emote.height,
-                      width: emote.width,
-                    }}
+                    style={imageStyle}
                   />
                 </TouchableOpacity>
               </Flip>
@@ -306,34 +291,12 @@ export default function MapScreen() {
           }
 
           return (
-            <TouchableOpacity
-              key={emote.name}
-              style={{
-                left: emote.x,
-                top: emote.y,
-                position: 'absolute',
-              }}
-              onPress={() => {
-                if (emote.name === currentEmote) {
-                  const updated = R.mergeAll([R.clone(emote), { isMissclick: false }])
-                  round.recordEmotePress(updated)
-                  setCurrentEmote(
-                    faker.helpers.arrayElement(gameRef.current.emotes.map((emote) => emote.name)),
-                  )
-                } else {
-                  const updated = R.mergeAll([R.clone(emote), { isMissclick: true }])
-                  round.recordEmotePress(updated)
-                }
-              }}
-            >
+            <TouchableOpacity key={emote.name} style={rootStyle} onPress={handlePress}>
               <Image
                 source={{
                   uri: emote.uri,
                 }}
-                style={{
-                  height: emote.height,
-                  width: emote.width,
-                }}
+                style={imageStyle}
               />
             </TouchableOpacity>
           )
