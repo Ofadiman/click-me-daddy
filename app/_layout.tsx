@@ -1,9 +1,7 @@
 import { Stack } from 'expo-router'
 import { PaperProvider } from 'react-native-paper'
-import { view } from '../.storybook/storybook.requires'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
-function Layout() {
+export default function Layout() {
   return (
     <PaperProvider>
       <Stack>
@@ -19,18 +17,3 @@ function Layout() {
     </PaperProvider>
   )
 }
-
-let EntryPoint = Layout
-
-const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true'
-if (storybookEnabled) {
-  const StorybookUIRoot = view.getStorybookUI({
-    storage: {
-      getItem: AsyncStorage.getItem,
-      setItem: AsyncStorage.setItem,
-    },
-  })
-  EntryPoint = StorybookUIRoot
-}
-
-export default EntryPoint
