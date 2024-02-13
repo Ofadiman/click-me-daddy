@@ -1,5 +1,8 @@
 import { Stack } from 'expo-router'
 import { PaperProvider } from 'react-native-paper'
+import { LogBox } from 'react-native'
+
+LogBox.ignoreLogs(['new NativeEventEmitter()'])
 
 export default function Layout() {
   return (
