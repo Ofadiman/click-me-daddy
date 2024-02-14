@@ -1,6 +1,7 @@
 import { Link, Stack, useLocalSearchParams } from 'expo-router'
 import {
   LayoutRectangle,
+  ScaledSize,
   StyleProp,
   TouchableOpacity,
   View,
@@ -58,6 +59,16 @@ const BackToHome = () => {
   )
 }
 
+const ONE_EMOTE_APPROXIMATE_SURFACE = 20_000
+const pickEmotesForScreenSize = (dimensions: ScaledSize, emotes: Emote[]): Emote[] => {
+  const surface = dimensions.width * dimensions.height
+  const numberOfEmotes = Math.min(
+    emotes.length,
+    Math.floor(surface / ONE_EMOTE_APPROXIMATE_SURFACE),
+  )
+  return faker.helpers.arrayElements(emotes, numberOfEmotes)
+}
+
 export default function MapScreen() {
   const round = useRound()
   const statistics = useStatistics()
@@ -69,7 +80,7 @@ export default function MapScreen() {
   const song = useSong()
   const emoteSetRef = useRef(EMOTES[localSearchParams.map as keyof typeof EMOTES])
   const gameRef = useRef<Game>({
-    emotes: EMOTES[localSearchParams.map as keyof typeof EMOTES],
+    emotes: pickEmotesForScreenSize(dimensions, emoteSetRef.current),
   })
   const [currentEmote, setCurrentEmote] = useState<string>('')
   const [gameState, setGameState] = useState<GameState>(GameState.Initial)
@@ -120,7 +131,7 @@ export default function MapScreen() {
 
     round.new()
     gameRef.current.emotes = shuffleEmotes({
-      emotes: emoteSetRef.current,
+      emotes: gameRef.current.emotes,
       layout: layout,
       obstacles: [
         {
