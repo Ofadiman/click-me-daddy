@@ -37,7 +37,9 @@ const TIMER_OFFSET_BOTTOM = 20
 const TIMER_OFFSET_RIGHT = 20
 
 const ONE_SECOND = 1000
-const GAME_TIME_IN_SECONDS = 10
+const GAME_TIME_IN_SECONDS = process.env.EXPO_PUBLIC_GAME_TIME
+  ? parseInt(process.env.EXPO_PUBLIC_GAME_TIME)
+  : 10
 
 enum GameState {
   Initial = 'initial',
